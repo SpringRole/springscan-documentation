@@ -326,3 +326,91 @@ Fetches a person information
 **Query Parameters**
 	
 	* Header: Client Token and Auth Token
+
+
+Court Check API
+---------------
+
+Fetches the court case reports matching the name,fatherName and address
+
+**Path** : /criminal/searchDirect
+
+**Method** : POST
+
+**Example Request**
+    .. code::
+
+		curl -X POST \
+		  https://api-dev.springscan.springverify.com/criminal/searchDirect \
+		  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8' \
+		  -H 'Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9' \
+		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
+		  -H 'cache-control: no-cache'
+
+.. note::
+	For Response check :doc:`appendex`	2	
+
+**Query Parameters**
+	
+	* Name
+	* Father's Name
+	* Address
+	* Header: Client Token and Auth Token
+
+
+Send For OCR
+------------
+
+Extracts the IDFY response of the person's document
+
+**PATH** : /idfy/sendForOCR
+
+**METHOD** : POST
+
+**Example Request**
+    .. code::
+
+	   	curl -X POST \
+		  https://api-dev.springscan.springverify.com/idfy/sendForOCR \
+		  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8' \
+		  -H 'Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9' \
+		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
+		  -H 'cache-control: no-cache'
+
+.. note::
+	For Response check :doc:`appendex`	1	
+
+**Query Parameters**
+	
+	* document1: URL of document
+	* document_type
+	* Header: Client Token and Auth Token
+
+
+Verify Source
+-------------
+
+To verify details on an ID document based on the details given
+
+**PATH** : /idfy/verify_source/docType/personID
+
+**METHOD** : POST
+
+**Example Request**
+    .. code::
+
+		curl -X POST \
+		  https://api-dev.springscan.springverify.com/idfy/verify_source/ind_gst_certificate/5e6f808f7182b549d2b49223 \
+		  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8' \
+		  -H 'Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9' \
+		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
+		  -H 'cache-control: no-cache'
+
+.. note::
+	For Response check :doc:`appendex`	1	
+
+**Query Parameters**
+	
+	* docType
+	* PersonId  
+	* Header: Client Token and Auth Token		  

@@ -98,6 +98,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#government-verification">Government Verification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#government-verification-without-ocr">Government Verification (without ocr)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fetch-person-api">Fetch Person API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#court-check-api">Court Check API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#send-for-ocr">Send For OCR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verify-source">Verify Source</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="appendex.html">Appendex</a></li>
@@ -480,6 +483,97 @@ as this does not go through complete ocr, matched information will be limited to
 <p><strong>Query Parameters</strong></p>
 <blockquote>
 <div><ul class="simple">
+<li>Header: Client Token and Auth Token</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="court-check-api">
+<h2>Court Check API<a class="headerlink" href="#court-check-api" title="Permalink to this headline">¶</a></h2>
+<p>Fetches the court case reports matching the name,fatherName and address</p>
+<p><strong>Path</strong> : /criminal/searchDirect</p>
+<p><strong>Method</strong> : POST</p>
+<dl class="docutils">
+<dt><strong>Example Request</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">springscan</span><span class="o">.</span><span class="n">springverify</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">criminal</span><span class="o">/</span><span class="n">searchDirect</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For Response check <a class="reference internal" href="appendex.html"><span class="doc">Appendex</span></a>      2</p>
+</div>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Name</li>
+<li>Father’s Name</li>
+<li>Address</li>
+<li>Header: Client Token and Auth Token</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="send-for-ocr">
+<h2>Send For OCR<a class="headerlink" href="#send-for-ocr" title="Permalink to this headline">¶</a></h2>
+<p>Extracts the IDFY response of the person’s document</p>
+<p><strong>PATH</strong> : /idfy/sendForOCR</p>
+<p><strong>METHOD</strong> : POST</p>
+<dl class="docutils">
+<dt><strong>Example Request</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">springscan</span><span class="o">.</span><span class="n">springverify</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">idfy</span><span class="o">/</span><span class="n">sendForOCR</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For Response check <a class="reference internal" href="appendex.html"><span class="doc">Appendex</span></a>      1</p>
+</div>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>document1: URL of document</li>
+<li>document_type</li>
+<li>Header: Client Token and Auth Token</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="verify-source">
+<h2>Verify Source<a class="headerlink" href="#verify-source" title="Permalink to this headline">¶</a></h2>
+<p>To verify details on an ID document based on the details given</p>
+<p><strong>PATH</strong> : /idfy/verify_source/docType/personID</p>
+<p><strong>METHOD</strong> : POST</p>
+<dl class="docutils">
+<dt><strong>Example Request</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">springscan</span><span class="o">.</span><span class="n">springverify</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">idfy</span><span class="o">/</span><span class="n">verify_source</span><span class="o">/</span><span class="n">ind_gst_certificate</span><span class="o">/</span><span class="mf">5e6</span><span class="n">f808f7182b549d2b49223</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For Response check <a class="reference internal" href="appendex.html"><span class="doc">Appendex</span></a>      1</p>
+</div>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>docType</li>
+<li>PersonId</li>
 <li>Header: Client Token and Auth Token</li>
 </ul>
 </div></blockquote>
