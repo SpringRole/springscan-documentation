@@ -221,18 +221,6 @@ GST Certficate:
 		}
 
 
-Verify GST Certficate:
-**********************
-
-**success Response**
-
-.. code::
-	  
-		{
-			"request_id": "87c820b7-75d1-498b-8b29-723685212da7"
-		}
-
-
 Appendex 2
 ----------
 
