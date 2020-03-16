@@ -45,10 +45,14 @@ Document Types Supported are
 	     - ind_passport
 	     - Yes
 	     - No
-	   * - Drivind License
+	   * - Driving License
 	     - ind_driving_license
 	     - Yes
 	     - Yes
+	   * - GST Certificate
+	     - ind_gst_certificate
+	     - Yes
+	     - Yes 
 
 Environment Urls
 ----------------

@@ -120,7 +120,7 @@ This API is used to initialize a **Person** with us. The person is initialized w
 
 **Query Parameters**
 	
-  * docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport
+  * docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport, ind_gst_certificate
   * document1: Url of document
   * document2: (optional) back url of document
   * selfie: selfie of person
@@ -153,18 +153,20 @@ Adds a new document to person or updates an existing document.
 		
 		 curl -X POST \
 		  https://api-dev.springscan.springverify.com/user/person/5df35fa819bd2a8d8663371c/document \
-		  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmguYmFncmVjaGExMjM0NTZAZ21haWwuY29tIiwidXNlcklkIjoiNWNkNDE4MmUzZDhlYWM1NDVjMWMxMWM2IiwiaWF0IjoxNTU3NTU5ODE4LCJleHAiOjE1NTc2MDMwMTh9.d-6gxhIPzmBhNYwGM5wSdC3EAAKnRhi_9fqgMBAEPow' \
-		  -H 'Content-Type: application/x-www-form-urlencoded' \
+		  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZGY4OGZjMTllZjFjODM0ODQwOTBmYjAiLCJpYXQiOjE1NzY2NjQ1MzQsImV4cCI6MTU4NTMwNDUzNH0.H-FiqMXSqQkE2gvvrJbCDQU8NQWx1Ru3_Ofk-HHxekM' \	
 		  -H 'Postman-Token: 7ca2a5cf-3ee3-49be-8cda-ff8cb475e1f5' \
 		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
 		  -H 'cache-control: no-cache' \
-		  -d 'docType=ind_aadhaar&document1=https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fadhaar.png'
+		  -d '{
+			docType=ind_gst_certificate,
+			document1=https://springverify-assets-id.s3.amazonaws.com/373/addressDoc-front	
+		    }'
 
 **Query Parameters**
 	
   * document1: Url of document
   * document2 (optional): back url of document
-  * docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport
+  * docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport, ind_gst_certificate
 
 
 Add/Update Selfie For Person
@@ -301,33 +303,6 @@ Initiates government verification on id number, name and date of birth provided 
    as this does not go through complete ocr, matched information will be limited to data provided
 
 
-Fetch Person API
-----------------
-
-Fetches a person information
-
-**Path** : /v2/user/person/governmentCheckDirect
-
-**Method** : POST
-
-**Example Request**
- 	.. code::
-		
-		 curl -X GET \
-		  https://api-dev.springscan.springverify.com/user/person/5df9fdf971b57d2c188ebc62 \
-		  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZGY4OGZjMTllZjFjODM0ODQwOTBmYjAiLCJpYXQiOjE1NzY2NjQ1MzQsImV4cCI6MTU4NTMwNDUzNH0.H-FiqMXSqQkE2gvvrJbCDQU8NQWx1Ru3_Ofk-HHxekM' \
-		  -H 'Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9' \
-		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
-		  -H 'cache-control: no-cache'
-
-.. note::
-	For Response check :doc:`appendex` 2
-
-**Query Parameters**
-	
-	* Header: Client Token and Auth Token
-
-
 Court Check API
 ---------------
 
@@ -358,59 +333,32 @@ Fetches the court case reports matching the name,fatherName and address
 	* Header: Client Token and Auth Token
 
 
-Send For OCR
-------------
 
-Extracts the IDFY response of the person's document
+Fetch Person API
+----------------
 
-**PATH** : /idfy/sendForOCR
+Fetches a person information
 
-**METHOD** : POST
+**Path** : /v2/user/person/governmentCheckDirect
+
+**Method** : POST
 
 **Example Request**
-    .. code::
-
-	   	curl -X POST \
-		  https://api-dev.springscan.springverify.com/idfy/sendForOCR \
-		  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8' \
+ 	.. code::
+		
+		 curl -X GET \
+		  https://api-dev.springscan.springverify.com/user/person/5df9fdf971b57d2c188ebc62 \
+		  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZGY4OGZjMTllZjFjODM0ODQwOTBmYjAiLCJpYXQiOjE1NzY2NjQ1MzQsImV4cCI6MTU4NTMwNDUzNH0.H-FiqMXSqQkE2gvvrJbCDQU8NQWx1Ru3_Ofk-HHxekM' \
 		  -H 'Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9' \
 		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
 		  -H 'cache-control: no-cache'
 
 .. note::
-	For Response check :doc:`appendex`	1	
+	For Response check :doc:`appendex` 2
 
 **Query Parameters**
 	
-	* document1: URL of document
-	* document_type
 	* Header: Client Token and Auth Token
 
 
-Verify Source
--------------
 
-To verify details on an ID document based on the details given
-
-**PATH** : /idfy/verify_source/docType/personID
-
-**METHOD** : POST
-
-**Example Request**
-    .. code::
-
-		curl -X POST \
-		  https://api-dev.springscan.springverify.com/idfy/verify_source/ind_gst_certificate/5e6f808f7182b549d2b49223 \
-		  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8' \
-		  -H 'Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9' \
-		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
-		  -H 'cache-control: no-cache'
-
-.. note::
-	For Response check :doc:`appendex`	1	
-
-**Query Parameters**
-	
-	* docType
-	* PersonId  
-	* Header: Client Token and Auth Token		  
