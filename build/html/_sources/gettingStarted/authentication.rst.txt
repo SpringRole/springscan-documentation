@@ -158,8 +158,8 @@ Adds a new document to person or updates an existing document.
 		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
 		  -H 'cache-control: no-cache' \
 		  -d '{
-			docType=ind_gst_certificate,
-			document1=https://springverify-assets-id.s3.amazonaws.com/373/addressDoc-front	
+			"docType" = "ind_gst_certificate",
+			"document1" = "https://springverify-assets-id.s3.amazonaws.com/373/addressDoc-front"	
 		    }'
 
 **Query Parameters**
@@ -188,7 +188,7 @@ Adds a new Selfie to person or updates an existing Selfie.
 		  -H 'Postman-Token: d737d790-e09e-404e-b629-55094d0ea7e7' \
 		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
 		  -H 'cache-control: no-cache' \
-		  -d selfieurl=https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme.jpg
+		  -d 'selfieurl=https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme.jpg'
 
 **Query Parameters**
 	
@@ -214,7 +214,7 @@ Does a compare of document and selfie, for a match. If User document image and u
 		  -H 'Postman-Token: 8f980d37-444b-4154-bbde-9bc086a39ded' \
 		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
 		  -H 'cache-control: no-cache' \
-		  -d docType=ind_driving_license
+		  -d 'docType=ind_driving_license'
 
 **Query Parameters**
 	
@@ -240,7 +240,7 @@ Initiates government verification
 Government Verification (without ocr)
 -------------------------------------
 
-Initiates government verification on id number, name and date of birth provided by client. No OCR is required for this, you can skip ocr step. Ideal if you have IDs and other information in text format.
+Initiates government verification on id number, name and date of birth or on gstin and legal name provided by client. No OCR is required for this, you can skip ocr step. Ideal if you have IDs and other information in text format.
 
 **Path** : /v2/user/person/governmentCheckDirect
 
@@ -297,6 +297,17 @@ Initiates government verification on id number, name and date of birth provided 
 			"id_number": "475260511399" 
 		}
 
+**GST CERTIFICATE**
+
+.. code::
+		
+		{
+			"personId": ":personId",
+			"doc_type": "ind_aadhaar",
+			"gstin": "29AAYCS8889G1ZZ",
+			"legal_name" : "SPRINGROLE INDIA PRIVATE LIMITED" 
+		}		
+
 .. note::
    date format is yyyy-mm-dd
    For response check :doc:`appendex` 1
@@ -320,7 +331,12 @@ Fetches the court case reports matching the name,fatherName and address
 		  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8' \
 		  -H 'Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9' \
 		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
-		  -H 'cache-control: no-cache'
+		  -H 'cache-control: no-cache' \
+		  -d '{
+			"name" = "Piyush",
+			"fatherName" = "Anand",
+			"address" = "897h9h7977997"	
+		    }'
 
 .. note::
 	For Response check :doc:`appendex`	2	
@@ -339,7 +355,7 @@ Fetch Person API
 
 Fetches a person information
 
-**Path** : /v2/user/person/governmentCheckDirect
+**Path** : /user/person/:personID
 
 **Method** : POST
 

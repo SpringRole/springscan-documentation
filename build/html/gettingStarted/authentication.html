@@ -319,8 +319,8 @@ Use the token which was returned after add candidate API.</p>
  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
  <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{</span>
-       <span class="n">docType</span><span class="o">=</span><span class="n">ind_gst_certificate</span><span class="p">,</span>
-       <span class="n">document1</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">springverify</span><span class="o">-</span><span class="n">assets</span><span class="o">-</span><span class="nb">id</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">373</span><span class="o">/</span><span class="n">addressDoc</span><span class="o">-</span><span class="n">front</span>
+       <span class="s2">&quot;docType&quot;</span> <span class="o">=</span> <span class="s2">&quot;ind_gst_certificate&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;document1&quot;</span> <span class="o">=</span> <span class="s2">&quot;https://springverify-assets-id.s3.amazonaws.com/373/addressDoc-front&quot;</span>
    <span class="p">}</span><span class="s1">&#39;</span>
 </pre></div>
 </div>
@@ -349,7 +349,7 @@ Use the token which was returned after add candidate API.</p>
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Postman-Token: d737d790-e09e-404e-b629-55094d0ea7e7&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
-  <span class="o">-</span><span class="n">d</span> <span class="n">selfieurl</span><span class="o">=</span><span class="n">https</span><span class="o">%</span><span class="mi">3</span><span class="n">A</span><span class="o">%</span><span class="mi">2</span><span class="n">F</span><span class="o">%</span><span class="mi">2</span><span class="n">Fpdf</span><span class="o">-</span><span class="n">reports</span><span class="o">-</span><span class="n">springrole</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">%</span><span class="mi">2</span><span class="n">Fme</span><span class="o">.</span><span class="n">jpg</span>
+  <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;selfieurl=https%3A</span><span class="si">%2F%2F</span><span class="s1">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s1">me.jpg&#39;</span>
 </pre></div>
 </div>
 </dd>
@@ -376,7 +376,7 @@ Use the token which was returned after add candidate API.</p>
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Postman-Token: 8f980d37-444b-4154-bbde-9bc086a39ded&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
-  <span class="o">-</span><span class="n">d</span> <span class="n">docType</span><span class="o">=</span><span class="n">ind_driving_license</span>
+  <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;docType=ind_driving_license&#39;</span>
 </pre></div>
 </div>
 </dd>
@@ -407,7 +407,7 @@ Use the token which was returned after add candidate API.</p>
 </div>
 <div class="section" id="government-verification-without-ocr">
 <h2>Government Verification (without ocr)<a class="headerlink" href="#government-verification-without-ocr" title="Permalink to this headline">¶</a></h2>
-<p>Initiates government verification on id number, name and date of birth provided by client. No OCR is required for this, you can skip ocr step. Ideal if you have IDs and other information in text format.</p>
+<p>Initiates government verification on id number, name and date of birth or on gstin and legal name provided by client. No OCR is required for this, you can skip ocr step. Ideal if you have IDs and other information in text format.</p>
 <p><strong>Path</strong> : /v2/user/person/governmentCheckDirect</p>
 <p><strong>Method</strong> : POST</p>
 <div class="admonition note">
@@ -452,6 +452,15 @@ Use the token which was returned after add candidate API.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p><strong>GST CERTIFICATE</strong></p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;personId&quot;</span><span class="p">:</span> <span class="s2">&quot;:personId&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;doc_type&quot;</span><span class="p">:</span> <span class="s2">&quot;ind_aadhaar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gstin&quot;</span><span class="p">:</span> <span class="s2">&quot;29AAYCS8889G1ZZ&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;legal_name&quot;</span> <span class="p">:</span> <span class="s2">&quot;SPRINGROLE INDIA PRIVATE LIMITED&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">date format is yyyy-mm-dd
@@ -471,7 +480,12 @@ as this does not go through complete ocr, matched information will be limited to
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
-  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span>
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
+  <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{</span>
+        <span class="s2">&quot;name&quot;</span> <span class="o">=</span> <span class="s2">&quot;Piyush&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fatherName&quot;</span> <span class="o">=</span> <span class="s2">&quot;Anand&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;address&quot;</span> <span class="o">=</span> <span class="s2">&quot;897h9h7977997&quot;</span>
+    <span class="p">}</span><span class="s1">&#39;</span>
 </pre></div>
 </div>
 </dd>
@@ -493,7 +507,7 @@ as this does not go through complete ocr, matched information will be limited to
 <div class="section" id="fetch-person-api">
 <h2>Fetch Person API<a class="headerlink" href="#fetch-person-api" title="Permalink to this headline">¶</a></h2>
 <p>Fetches a person information</p>
-<p><strong>Path</strong> : /v2/user/person/governmentCheckDirect</p>
+<p><strong>Path</strong> : /user/person/:personID</p>
 <p><strong>Method</strong> : POST</p>
 <dl class="docutils">
 <dt><strong>Example Request</strong></dt>
