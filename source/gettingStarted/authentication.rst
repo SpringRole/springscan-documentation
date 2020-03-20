@@ -388,7 +388,7 @@ Masks an Aadhaar image to hide first 12 digits of Aadhaar ID number
 **Example Request**
  	.. code::
 		
-		curl --location --request POST 'localhost:3080/idfy/maskAadhaar' \
+		curl --location --request POST 'api-dev.springscan.springverify.com/verification/maskAadhaar' \
 		--header 'Token: 00ffc975-eafa-4451-9a71-aad62623c963' \
 		--header 'Content-Type: application/json' \
 		--data-raw '{
