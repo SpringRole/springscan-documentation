@@ -381,7 +381,7 @@ Aadhaar Masking
 
 Masks an Aadhaar image to hide first 12 digits of Aadhaar ID number
 
-**Path** : /idfy/maskAadhaar
+**Path** : /verification/maskAadhaar
 
 **Method** : POST
 
