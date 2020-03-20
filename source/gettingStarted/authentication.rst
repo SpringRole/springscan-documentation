@@ -376,5 +376,30 @@ Fetches a person information
 	
 	* Header: Client Token and Auth Token
 
+Aadhaar Masking 
+----------------
 
+Masks an Aadhaar image to hide first 12 digits of Aadhaar ID number
+
+**Path** : /idfy/maskAadhaar
+
+**Method** : POST
+
+**Example Request**
+ 	.. code::
+		
+		curl --location --request POST 'localhost:3080/idfy/maskAadhaar' \
+		--header 'Token: 00ffc975-eafa-4451-9a71-aad62623c963' \
+		--header 'Content-Type: application/json' \
+		--data-raw '{
+			"aadhaar_url": [
+				"https://pdf-reports-springrole.s3.amazonaws.com/ind_aadhaar_1574775334523.jpg",
+				"https://pdf-reports-springrole.s3.amazonaws.com/ind_aadhaar_1574775334523.jpg"],
+			"consent": true
+			}'
+
+**Query Parameters**
+	
+	* aadhaar_url: can be an array of aadhaar urls or a single url
+	* consent: we will go ahead with masking only when consent is true from you
 
