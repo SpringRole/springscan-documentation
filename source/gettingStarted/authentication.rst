@@ -403,3 +403,36 @@ Masks an Aadhaar image to hide first 12 digits of Aadhaar ID number
 	* aadhaar_url: can be an array of aadhaar urls or a single url
 	* consent: we will go ahead with masking only when consent is true from you
 
+
+Selfie Quality Detection
+----------------
+
+returns quality of selfie image
+
+**Path** : /face/checkQuality
+
+**Method** : POST
+
+**Example Request**
+ 	.. code::
+		
+		curl --location --request POST 'https://api-dev.springscan.springverify.com/face/checkQuality' \
+		--header 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
+		--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZTMwN2IwNGNkNWQ5YTAzMTgwYzMwYWMiLCJpYXQiOjE1ODYzNDU0ODUsImV4cCI6MTU5NDk4NTQ4NX0.7WOKNdv-wZ21cYVKuE8tMF2waecvC1NGUqtyV9pDjKE' \
+		--header 'Content-Type: application/json' \
+		--data-raw '{
+			"selfie_url": "https://image.shutterstock.com/image-photo/pretty-mixed-race-woman-taking-260nw-363424883.jpg",
+			"person_id": "<if_generated_earlier>"
+		}'
+
+**Query Parameters**
+	* selfie_url: Hosting url or Base64 of selfie image
+	* person_id: optional, if provided , selfie quality will be stored against the person. else not.
+
+**Response Parameters**
+	* face_box : box dimensions
+	* face_coverage: contains a message comment about selfie with percentage and status
+	* face_detected: boolean for face detection
+	* is_live: boolean for liveliness detection
+	* multiple_faces_detected: boolean for multiple faces detection
+	* person_id: created or returned person's id
