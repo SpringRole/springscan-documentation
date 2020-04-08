@@ -65,7 +65,7 @@ We aim to provide clients with option to host their documents with us. The menti
 		  -H 'cache-control: no-cache' \
 		  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
 		  -F person_id=5df35fa819bd2a8d8663371c \
-		  -F 'ind_aadhaar=@/Users/karanahuja/Documents/My IDs/adhaar.png'
+		  -F 'ind_aadhaar=@/Users/karanahuja/Documents/My IDs/aadhaar.png'
 
 
 **Query Parameters**
@@ -120,7 +120,7 @@ This API is used to initialize a **Person** with us. The person is initialized w
 
 **Query Parameters**
 	
-  * docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport, ind_gst_certificate
+  * docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate
   * document1: Url of document
   * document2: (optional) back url of document
   * selfie: selfie of person
@@ -166,7 +166,7 @@ Adds a new document to person or updates an existing document.
 	
   * document1: Url of document
   * document2 (optional): back url of document
-  * docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport, ind_gst_certificate
+  * docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate
 
 
 Add/Update Selfie For Person
@@ -218,7 +218,7 @@ Does a compare of document and selfie, for a match. If User document image and u
 
 **Query Parameters**
 	
-	* docType :ind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport
+	* docType :ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport
 	* Header: Client Token and Auth Token
 
 Government Verification
