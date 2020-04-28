@@ -1,5 +1,5 @@
-Introduction
-============
+Getting started with the APIs
+=============================
 
 We provide API access to clients for document OCR and Government verification. You are requested to integrate in our Test Mode first, and test the integration, before shifting to Live Mode.
 

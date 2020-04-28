@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Appendex" href="appendex.html" />
-    <link rel="prev" title="Introduction" href="introduction.html" /> 
+    <link rel="prev" title="Getting started with the APIs" href="GettingStartedWithTheAPIs.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,17 +87,21 @@
             
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GettingStartedWithTheAPIs.html">Getting started with the APIs</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">SpringScan REST API’s</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#login">Login</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#upload-documents">Upload Documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#initialize-api">Initialize API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#add-update-document-for-person">Add/Update Document For Person</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selfie-quality-detection">Selfie Quality Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#add-update-selfie-for-person">Add/Update Selfie For Person</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#compare-documentation-and-selfie">Compare Documentation And Selfie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#government-verification">Government Verification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#government-verification-without-ocr">Government Verification (without ocr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#court-check-api">Court Check API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fetch-person-api">Fetch Person API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aadhaar-masking">Aadhaar Masking</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="appendex.html">Appendex</a></li>
@@ -187,12 +191,12 @@
 </div>
 </dd>
 <dt><strong>Example Response</strong></dt>
-<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">{</span>
-<span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZTMwN2IwNGNkNWQ5YTAzMTgwYzMwYWMiLCJpYXQiOjE1ODM0MDQzMzMsImV4cCI6MTU5MjA0NDMzM30.V_yzdNB4w5H7FAW1oc_M7iy-_-RJXOTbD8RG4erdINU&quot;</span><span class="p">,</span>
-<span class="s2">&quot;userId&quot;</span><span class="p">:</span> <span class="s2">&quot;5e307b04cd5d9a03180c30ac&quot;</span><span class="p">,</span>
-<span class="s2">&quot;user_name&quot;</span><span class="p">:</span> <span class="s2">&quot;klsjdskl&quot;</span><span class="p">,</span>
-<span class="s2">&quot;company_name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
-    <span class="p">}</span>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZTMwN2IwNGNkNWQ5YTAzMTgwYzMwYWMiLCJpYXQiOjE1ODM0MDQzMzMsImV4cCI6MTU5MjA0NDMzM30.V_yzdNB4w5H7FAW1oc_M7iy-_-RJXOTbD8RG4erdINU&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;userId&quot;</span><span class="p">:</span> <span class="s2">&quot;5e307b04cd5d9a03180c30ac&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;user_name&quot;</span><span class="p">:</span> <span class="s2">&quot;klsjdskl&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;company_name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </dd>
@@ -202,6 +206,14 @@
 <div><ul class="simple">
 <li>email (string): Email registered in springscan.</li>
 <li>password (string): Password registered in springscan.</li>
+</ul>
+</div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>500: Either Email/Phone number, Password is missing in request</li>
+<li>404: User not found</li>
+<li>403: Password entered in request is incorrect</li>
 </ul>
 </div></blockquote>
 </div>
@@ -221,7 +233,23 @@
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW&#39;</span> \
   <span class="o">-</span><span class="n">F</span> <span class="n">person_id</span><span class="o">=</span><span class="mi">5</span><span class="n">df35fa819bd2a8d8663371c</span> \
-  <span class="o">-</span><span class="n">F</span> <span class="s1">&#39;ind_aadhaar=@/Users/karanahuja/Documents/My IDs/adhaar.png&#39;</span>
+  <span class="o">-</span><span class="n">F</span> <span class="s1">&#39;ind_aadhaar=&#39;</span><span class="n">https</span><span class="o">%</span><span class="mi">3</span><span class="n">A</span><span class="o">%</span><span class="mi">2</span><span class="n">F</span><span class="o">%</span><span class="mi">2</span><span class="n">Fpdf</span><span class="o">-</span><span class="n">reports</span><span class="o">-</span><span class="n">springrole</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">%</span><span class="mi">2</span><span class="n">aadhar</span><span class="o">.</span><span class="n">png</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Example Response</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;ind_aadhaar&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;Location&quot;</span><span class="p">:</span> <span class="s2">&quot;https%3A</span><span class="si">%2F%2F</span><span class="s2">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2a</span><span class="s2">adhar.png&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Bucket&quot;</span><span class="p">:</span> <span class="s2">&quot;pdf-reports-springrole&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;originalName&quot;</span><span class="p">:</span> <span class="s2">&quot;adhaar.png&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mimeType&quot;</span><span class="p">:</span> <span class="s2">&quot;image/png&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;belongs_to&quot;</span><span class="p">:</span> <span class="s2">&quot;5df35fa819bd2a8d8663371c&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;s3_paths&quot;</span><span class="p">:</span> <span class="s2">&quot;5ea04cb5af006f001c24ef52&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;person_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5df35fa819bd2a8d8663371c&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_new_person&quot;</span><span class="p">:</span> <span class="n">false</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </dd>
@@ -239,6 +267,15 @@
 <li>ind_passport (Optional): Passport file</li>
 </ul>
 </div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>401: Autorization token is missing in request</li>
+<li>500: Autorization token is expired/Person ID is not valid</li>
+<li>404: Person ID not found</li>
+<li>401: User does not exist</li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="initialize-api">
 <h2>Initialize API<a class="headerlink" href="#initialize-api" title="Permalink to this headline">¶</a></h2>
@@ -251,7 +288,7 @@ Call Initialize only once in Person’s lifecycle. Any subsequent calls for same
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last"><strong>Optional</strong>:
-If you created a Person in Upload documents API, you can skip calling initialize and move to upload document    API. Alternatively, you can call initialize with personID to attach documents against the person.</p>
+If you created a Person in Upload documents API, you can skip calling initialize and move to Add/Update document API. Alternatively, you can call initialize with personID to attach documents against the person.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -269,9 +306,10 @@ Response will contain document object with OCR data. For Response look at the en
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
   <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{</span>
-    <span class="s2">&quot;selfie&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pdf-reports-springrole.s3.amazonaws.com/face_image_1573552012776.jpg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;selfie&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;selfie_url&gt;&quot;</span><span class="p">,</span>
     <span class="s2">&quot;docType&quot;</span><span class="p">:</span> <span class="s2">&quot;ind_pan&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;document1&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pdf-reports-springrole.s3.amazonaws.com/ind_pan_1573552012699.jpg&quot;</span>
+    <span class="s2">&quot;document1&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;document_front_url&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;document2&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;optional_back_url&gt;&quot;</span><span class="p">,</span>
 <span class="p">}</span><span class="s1">&#39;</span>
 </pre></div>
 </div>
@@ -280,12 +318,20 @@ Response will contain document object with OCR data. For Response look at the en
 <p><strong>Query Parameters</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport</li>
+<li>docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate</li>
 <li>document1: Url of document</li>
 <li>document2: (optional) back url of document</li>
 <li>selfie: selfie of person</li>
 <li>Header: Client Token and Auth Token</li>
-<li>personId: person id.</li>
+<li>personId: person id</li>
+</ul>
+</div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>401: Unauthorized request</li>
+<li>500: Autorization token sent is expired</li>
+<li>404: Doc type is missing in request/User or Person ID not found</li>
 </ul>
 </div></blockquote>
 </div>
@@ -313,22 +359,150 @@ Use the token which was returned after add candidate API.</p>
 <dt><strong>Example Request</strong></dt>
 <dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">springscan</span><span class="o">.</span><span class="n">springverify</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">person</span><span class="o">/</span><span class="mi">5</span><span class="n">df35fa819bd2a8d8663371c</span><span class="o">/</span><span class="n">document</span> \
- <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmguYmFncmVjaGExMjM0NTZAZ21haWwuY29tIiwidXNlcklkIjoiNWNkNDE4MmUzZDhlYWM1NDVjMWMxMWM2IiwiaWF0IjoxNTU3NTU5ODE4LCJleHAiOjE1NTc2MDMwMTh9.d-6gxhIPzmBhNYwGM5wSdC3EAAKnRhi_9fqgMBAEPow&#39;</span> \
- <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZGY4OGZjMTllZjFjODM0ODQwOTBmYjAiLCJpYXQiOjE1NzY2NjQ1MzQsImV4cCI6MTU4NTMwNDUzNH0.H-FiqMXSqQkE2gvvrJbCDQU8NQWx1Ru3_Ofk-HHxekM&#39;</span> \
  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Postman-Token: 7ca2a5cf-3ee3-49be-8cda-ff8cb475e1f5&#39;</span> \
  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
- <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;docType=ind_aadhaar&amp;document1=https%3A</span><span class="si">%2F%2F</span><span class="s1">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s1">adhaar.png&#39;</span>
+ <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{</span>
+       <span class="s2">&quot;docType&quot;</span> <span class="o">=</span> <span class="s2">&quot;ind_gst_certificate&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;document1&quot;</span> <span class="o">=</span> <span class="s2">&quot;https://springverify-assets-id.s3.amazonaws.com/&quot;</span>
+   <span class="p">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Example Response</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;first&quot;</span><span class="p">:</span> <span class="s2">&quot;MEGHA&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;last&quot;</span><span class="p">:</span> <span class="s2">&quot;BANSAL&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;middle&quot;</span><span class="p">:</span> <span class="s2">&quot;BANSAL&quot;</span>
+                        <span class="p">},</span>
+                        <span class="s2">&quot;documents&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;ind_gst_certificate&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                        <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;FIRST AND FOURTH FLOOR, NO 20, LAKSHMI PLAZA&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;constitution_of_business&quot;</span><span class="p">:</span> <span class="s2">&quot;Private Limited Company&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;date_of_liability&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-07-24&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;gstin&quot;</span><span class="p">:</span> <span class="s2">&quot;29AAYCS8889G1BB&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;is_provisional&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+                                        <span class="s2">&quot;legal_name&quot;</span><span class="p">:</span> <span class="s2">&quot;SPRINGROLE INDIA PRIVATE LIMITED&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;pan_number&quot;</span><span class="p">:</span> <span class="s2">&quot;AAYCS8889G&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;trade_name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;type_of_registration&quot;</span><span class="p">:</span> <span class="s2">&quot;Regular&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;valid_upto&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-07-24&quot;</span>
+                                <span class="p">},</span>
+                                <span class="s2">&quot;manualObj&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+                                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;completed&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;faceMatched&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+                                <span class="s2">&quot;matchResult&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+                                <span class="s2">&quot;matchedInformation&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+                                <span class="s2">&quot;govResult&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+                                <span class="s2">&quot;request_id&quot;</span><span class="p">:</span> <span class="s2">&quot;53e6719c-9f8f-4018-b7ad-fd4b24478be2&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;created_by&quot;</span><span class="p">:</span> <span class="s2">&quot;automatic&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5ea04e0dad178e7135373021&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;docType&quot;</span><span class="p">:</span> <span class="s2">&quot;ind_gst_certificate&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;document1&quot;</span><span class="p">:</span> <span class="s2">&quot;https%3A</span><span class="si">%2F%2F</span><span class="s2">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%g</span><span class="s2">st.png&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;belongsTo&quot;</span><span class="p">:</span> <span class="s2">&quot;5df35fa819bd2a8d8663371c&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:00:57.289Z&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;updatedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:00:57.289Z&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;__v&quot;</span><span class="p">:</span> <span class="mi">0</span>
+                        <span class="p">}</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </dd>
 </dl>
 <p><strong>Query Parameters</strong></p>
 <blockquote>
+<div><blockquote>
 <div><ul class="simple">
 <li>document1: Url of document</li>
 <li>document2 (optional): back url of document</li>
-<li>docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport</li>
+<li>docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate</li>
+</ul>
+</div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>404: Person not found</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="selfie-quality-detection">
+<h2>Selfie Quality Detection<a class="headerlink" href="#selfie-quality-detection" title="Permalink to this headline">¶</a></h2>
+<p>Returns quality of selfie image</p>
+<p><strong>Path</strong> : /face/checkQuality</p>
+<p><strong>Method</strong> : POST</p>
+<dl class="docutils">
+<dt><strong>Example Request</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">--</span><span class="n">location</span> <span class="o">--</span><span class="n">request</span> <span class="n">POST</span> <span class="s1">&#39;https://api-dev.springscan.springverify.com/face/checkQuality&#39;</span> \
+<span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
+<span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZTMwN2IwNGNkNWQ5YTAzMTgwYzMwYWMiLCJpYXQiOjE1ODYzNDU0ODUsImV4cCI6MTU5NDk4NTQ4NX0.7WOKNdv-wZ21cYVKuE8tMF2waecvC1NGUqtyV9pDjKE&#39;</span> \
+<span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Content-Type: application/json&#39;</span> \
+<span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">raw</span> <span class="s1">&#39;{</span>
+        <span class="s2">&quot;selfie_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https%3A</span><span class="si">%2F%2F</span><span class="s2">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s2">me.jpg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;person_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5ea03117af006f001c24ef50&quot;</span>
+<span class="p">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Example Response</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;face_box&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="mi">194</span><span class="p">,</span>
+    <span class="s2">&quot;top&quot;</span><span class="p">:</span> <span class="mi">66</span><span class="p">,</span>
+    <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">66</span>
+<span class="p">},</span>
+<span class="s2">&quot;face_coverage&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;too far from the camera&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;percentage&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;not_optimal&quot;</span>
+<span class="p">},</span>
+<span class="s2">&quot;face_detected&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+<span class="s2">&quot;face_quality&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;optimal&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;optimal&quot;</span>
+<span class="p">},</span>
+<span class="s2">&quot;is_live&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+<span class="s2">&quot;multiple_faces_detected&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+<span class="s2">&quot;person_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5ea03117af006f001c24ef50&quot;</span><span class="p">,</span>
+<span class="s2">&quot;is_updated_for_user&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+<span class="s2">&quot;selfie&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https%3A</span><span class="si">%2F%2F</span><span class="s2">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s2">me.jpg&quot;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Query Parameters</strong></dt>
+<dd><ul class="first last simple">
+<li>selfie_url: Hosting url or Base64 of selfie image</li>
+<li>person_id: optional, if provided , selfie quality will be stored against the person. else not.</li>
+<li>replace: optional, attaches the sent selfie url with the person . default is true.</li>
+</ul>
+</dd>
+<dt><strong>Response Parameters</strong></dt>
+<dd><ul class="first last simple">
+<li>face_box : box dimensions</li>
+<li>face_coverage: contains a message comment about selfie with percentage and status</li>
+<li>face_detected: boolean for face detection</li>
+<li>is_live: boolean for liveliness detection</li>
+<li>multiple_faces_detected: boolean for multiple faces detection</li>
+<li>person_id: created or returned person’s id</li>
+<li>is_updated_for_user: if true, sent selfie was successfully validated and attached to the user. if false, either selfie validation failed or replace was false in query</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>404: Person/User not found</li>
+<li>400: Bad request, image unclear</li>
 </ul>
 </div></blockquote>
 </div>
@@ -346,7 +520,7 @@ Use the token which was returned after add candidate API.</p>
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Postman-Token: d737d790-e09e-404e-b629-55094d0ea7e7&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
-  <span class="o">-</span><span class="n">d</span> <span class="n">selfieurl</span><span class="o">=</span><span class="n">https</span><span class="o">%</span><span class="mi">3</span><span class="n">A</span><span class="o">%</span><span class="mi">2</span><span class="n">F</span><span class="o">%</span><span class="mi">2</span><span class="n">Fpdf</span><span class="o">-</span><span class="n">reports</span><span class="o">-</span><span class="n">springrole</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">%</span><span class="mi">2</span><span class="n">Fme</span><span class="o">.</span><span class="n">jpg</span>
+  <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;selfieurl=https%3A</span><span class="si">%2F%2F</span><span class="s1">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s1">me.jpg&#39;</span>
 </pre></div>
 </div>
 </dd>
@@ -356,6 +530,13 @@ Use the token which was returned after add candidate API.</p>
 <div><ul class="simple">
 <li>selfieUrl: Url of selfie</li>
 <li>Header: Client Token and Auth Token</li>
+</ul>
+</div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>401: Unauthorized request/Person not found</li>
+<li>400: Authorization token is expired</li>
 </ul>
 </div></blockquote>
 </div>
@@ -373,7 +554,26 @@ Use the token which was returned after add candidate API.</p>
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Postman-Token: 8f980d37-444b-4154-bbde-9bc086a39ded&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
-  <span class="o">-</span><span class="n">d</span> <span class="n">docType</span><span class="o">=</span><span class="n">ind_driving_license</span>
+  <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;docType=ind_driving_license&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Example Response</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;matchResult&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;image_1&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;face_detected&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;face_quality&quot;</span><span class="p">:</span> <span class="s2">&quot;Good&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;image_2&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;face_detected&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;face_quality&quot;</span><span class="p">:</span> <span class="s2">&quot;Good&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;is_a_match&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;match_score&quot;</span><span class="p">:</span> <span class="mf">25.377161026000977</span><span class="p">,</span>
+    <span class="s2">&quot;review_recommended&quot;</span><span class="p">:</span> <span class="n">false</span>
+<span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </dd>
@@ -381,8 +581,16 @@ Use the token which was returned after add candidate API.</p>
 <p><strong>Query Parameters</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>docType :ind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport</li>
+<li>docType :ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport</li>
 <li>Header: Client Token and Auth Token</li>
+</ul>
+</div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>401: Unauthorized request/Person not found</li>
+<li>400: Authorization token is expired</li>
+<li>404: Selfie/document file missing</li>
 </ul>
 </div></blockquote>
 </div>
@@ -401,10 +609,19 @@ Use the token which was returned after add candidate API.</p>
 <li>Header: Client Token and Auth Token</li>
 </ul>
 </div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>401: Unauthorized request/Person not found</li>
+<li>400: Authorization token is expired</li>
+<li>404: Doctype missing in request</li>
+<li>500: PersonID missing in request/Invalid DocType/Document doesn’t exist for PersonID</li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="government-verification-without-ocr">
 <h2>Government Verification (without ocr)<a class="headerlink" href="#government-verification-without-ocr" title="Permalink to this headline">¶</a></h2>
-<p>Initiates government verification on id number, name and date of birth provided by client. No OCR is required for this, you can skip ocr step. Ideal if you have IDs and other information in text format.</p>
+<p>Initiates government verification on id number, name and date of birth or on gstin and legal name provided by client. No OCR is required for this, you can skip ocr step. Ideal if you have IDs and other information in text format.</p>
 <p><strong>Path</strong> : /v2/user/person/governmentCheckDirect</p>
 <p><strong>Method</strong> : POST</p>
 <div class="admonition note">
@@ -449,17 +666,78 @@ Use the token which was returned after add candidate API.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p><strong>GST CERTIFICATE</strong></p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;personId&quot;</span><span class="p">:</span> <span class="s2">&quot;:personId&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;doc_type&quot;</span><span class="p">:</span> <span class="s2">&quot;ind_aadhaar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gstin&quot;</span><span class="p">:</span> <span class="s2">&quot;29AAYCS8889G1ZZ&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;legal_name&quot;</span> <span class="p">:</span> <span class="s2">&quot;SPRINGROLE INDIA PRIVATE LIMITED&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">date format is yyyy-mm-dd
 For response check <a class="reference internal" href="appendex.html"><span class="doc">Appendex</span></a> 1
 as this does not go through complete ocr, matched information will be limited to data provided</p>
 </div>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>401: Unauthorized request</li>
+<li>500: Authorization token is expired</li>
+<li>404: Doctype missing in request/Person not found</li>
+<li>500: Invalid DocType</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="court-check-api">
+<h2>Court Check API<a class="headerlink" href="#court-check-api" title="Permalink to this headline">¶</a></h2>
+<p>Fetches the court case reports matching the name,fatherName and address</p>
+<p><strong>Path</strong> : /criminal/searchDirect</p>
+<p><strong>Method</strong> : POST</p>
+<dl class="docutils">
+<dt><strong>Example Request</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">springscan</span><span class="o">.</span><span class="n">springverify</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">criminal</span><span class="o">/</span><span class="n">searchDirect</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTc5Njg4MDA5LCJleHAiOjE1ODgzMjgwMDl9.E0NZd0wa36uKFZtqI0lkxg7rzVWAftTGAQ__Z-bhAb8&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Postman-Token: 8fd4fb50-9812-43a1-80dd-19a87363aae9&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
+  <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{</span>
+        <span class="s2">&quot;name&quot;</span> <span class="o">=</span> <span class="s2">&quot;Piyush&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fatherName&quot;</span> <span class="o">=</span> <span class="s2">&quot;Sanjay&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;address&quot;</span> <span class="o">=</span> <span class="s2">&quot;897h9h7977997&quot;</span>
+    <span class="p">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For Response check <a class="reference internal" href="appendex.html"><span class="doc">Appendex</span></a>      2</p>
+</div>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>Name</li>
+<li>Father’s Name</li>
+<li>Address</li>
+<li>Header: Client Token and Auth Token</li>
+</ul>
+</div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>401: Unauthorized request/Person not found</li>
+<li>500: Authorization token is expired/IRequest params (Name/Father’s Name/Address) is missing</li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="fetch-person-api">
 <h2>Fetch Person API<a class="headerlink" href="#fetch-person-api" title="Permalink to this headline">¶</a></h2>
 <p>Fetches a person information</p>
-<p><strong>Path</strong> : /v2/user/person/governmentCheckDirect</p>
+<p><strong>Path</strong> : /user/person/:personId</p>
 <p><strong>Method</strong> : POST</p>
 <dl class="docutils">
 <dt><strong>Example Request</strong></dt>
@@ -483,6 +761,88 @@ as this does not go through complete ocr, matched information will be limited to
 <li>Header: Client Token and Auth Token</li>
 </ul>
 </div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>401: Unauthorized request/Person not found</li>
+<li>400: Authorization token is expired</li>
+<li>404: Doctype missing in request</li>
+<li>500: PersonID missing in request/Invalid DocType/Document doesn’t exist for PersonID</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="aadhaar-masking">
+<h2>Aadhaar Masking<a class="headerlink" href="#aadhaar-masking" title="Permalink to this headline">¶</a></h2>
+<p>Masks an Aadhaar image to hide first 12 digits of Aadhaar ID number</p>
+<p><strong>Path</strong> : /verification/maskAadhaar</p>
+<p><strong>Method</strong> : POST</p>
+<dl class="docutils">
+<dt><strong>Example Request</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">--</span><span class="n">location</span> <span class="o">--</span><span class="n">request</span> <span class="n">POST</span> <span class="s1">&#39;api-dev.springscan.springverify.com/verification/maskAadhaar&#39;</span> \
+<span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Token: 00ffc975-eafa-4451-9a71-aad62623c963&#39;</span> \
+<span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Content-Type: application/json&#39;</span> \
+<span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">raw</span> <span class="s1">&#39;{</span>
+        <span class="s2">&quot;aadhaar_url&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;https%3A</span><span class="si">%2F%2F</span><span class="s2">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s2">me.jpg&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;https%3A</span><span class="si">%2F%2F</span><span class="s2">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s2">me2.jpg&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;consent&quot;</span><span class="p">:</span> <span class="n">true</span>
+        <span class="p">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Example Response</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="p">{</span>
+    <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;mask&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;completed_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T17:22:12+05:30&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T17:22:08+05:30&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;group_id&quot;</span><span class="p">:</span> <span class="s2">&quot;b101b3d0-848f-11ea-b554-8b104684043b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;request_id&quot;</span><span class="p">:</span> <span class="s2">&quot;f6dc6716-dc17-40ae-ad5f-13eff5ae6c1f&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;document_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https%3A</span><span class="si">%2F%2F</span><span class="s2">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s2">me1.jpg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id_number_found&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;original_document_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https%3A</span><span class="si">%2F%2F</span><span class="s2">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s2">me.jpg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;self_link&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+    <span class="p">},</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;completed&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;task_id&quot;</span><span class="p">:</span> <span class="s2">&quot;b1018cc0-848f-11ea-b554-8b104684043b&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ind_aadhaar&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;mask&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;completed_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T17:22:12+05:30&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T17:22:08+05:30&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;group_id&quot;</span><span class="p">:</span> <span class="s2">&quot;b101b3d2-848f-11ea-b554-8b104684043b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;request_id&quot;</span><span class="p">:</span> <span class="s2">&quot;c592ac66-00e4-4bab-9e81-7958b0655f81&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;document_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https%3A</span><span class="si">%2F%2F</span><span class="s2">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s2">me4.jpg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id_number_found&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;original_document_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https%3A</span><span class="si">%2F%2F</span><span class="s2">pdf-reports-springrole.s3.amazonaws.com</span><span class="si">%2F</span><span class="s2">me2.jpg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;self_link&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+    <span class="p">},</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;completed&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;task_id&quot;</span><span class="p">:</span> <span class="s2">&quot;b101b3d1-848f-11ea-b554-8b104684043b&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ind_aadhaar&quot;</span>
+<span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>aadhaar_url: can be an array of aadhaar urls or a single url</li>
+<li>consent: we will go ahead with masking only when consent is true from you</li>
+</ul>
+</div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>401: Unauthorized request/Person not found</li>
+<li>500: Authorization token is expired/Request params (Aadhaar URL/Consent Key) is missing or wrong</li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 
@@ -497,7 +857,7 @@ as this does not go through complete ocr, matched information will be limited to
         <a href="appendex.html" class="btn btn-neutral float-right" title="Appendex" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="GettingStartedWithTheAPIs.html" class="btn btn-neutral float-left" title="Getting started with the APIs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

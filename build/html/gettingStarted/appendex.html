@@ -86,7 +86,8 @@
             
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GettingStartedWithTheAPIs.html">Getting started with the APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">SpringScan REST API’s</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Appendex</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#appendex-1">Appendex 1</a><ul>
@@ -94,9 +95,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#pan-card">PAN CARD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#voter-id">Voter ID</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aadhaar">Aadhaar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gst-certficate">GST Certficate:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#appendex-2">Appendex 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendex-2">Appendex 2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#court-check">Court Check</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -325,6 +330,37 @@
 <p><strong>state_match</strong> will be true if state from ocr and goverment are same.</p>
 <p><strong>age_match</strong> will be true if age from ocr and goverment are same.</p>
 </div>
+<div class="section" id="gst-certficate">
+<h3>GST Certficate:<a class="headerlink" href="#gst-certficate" title="Permalink to this headline">¶</a></h3>
+<p><strong>success Response</strong></p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">{</span>
+ <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="s2">&quot;id_found&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Id was found in the source&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+ <span class="s2">&quot;ocr&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;FIRST AND FOURTH FLOOR, NO 20, LAKSHMI PLAZA, KRISHNANAGAR INDUSTRIAL LAYOUT, HOSUR ROAD,&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;constitution_of_business&quot;</span><span class="p">:</span> <span class="s2">&quot;Private Limited Company&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;date_of_liability&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-07-24&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;gstin&quot;</span><span class="p">:</span> <span class="s2">&quot;29AAYCS8889G1ZZ&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;is_provisional&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+     <span class="s2">&quot;legal_name&quot;</span><span class="p">:</span> <span class="s2">&quot;SPRINGROLE INDIA PRIVATE LIMITED&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;pan_number&quot;</span><span class="p">:</span> <span class="s2">&quot;AAYCS8889G&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;trade_name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;type_of_registration&quot;</span><span class="p">:</span> <span class="s2">&quot;Regular&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;valid_upto&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-07-24&quot;</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;matched_information&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;OCR Data has been verified with government source&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;gstin_match&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+     <span class="s2">&quot;legal_name_match&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+     <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;id_found&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>gstin_match</strong> will be true if gstin from ocr and goverment are same.</p>
+<p><strong>legal_name_match</strong> will be percentage match  of scanned legal_name and government retrieved legal_name.</p>
+</div>
 </div>
 <div class="section" id="appendex-2">
 <h2>Appendex 2<a class="headerlink" href="#appendex-2" title="Permalink to this headline">¶</a></h2>
@@ -395,6 +431,84 @@
 <p><strong>result</strong> object inside ind_*  object is the ==OCR result==</p>
 <p><strong>govResult</strong> is government result object, filled after government verification (5) api is called</p>
 <p><strong>document1</strong> is the link of document</p>
+<div class="section" id="court-check">
+<h3>Court Check<a class="headerlink" href="#court-check" title="Permalink to this headline">¶</a></h3>
+<p><strong>success response</strong></p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="p">{</span>
+<span class="s2">&quot;reports&quot;</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="s2">&quot;2017&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;subject&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;address_taluka&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;ecourt&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;next_hearing_date&quot;</span><span class="p">:</span> <span class="s2">&quot; 21st December 2017&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;address_pincode&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;first_hearing_date&quot;</span><span class="p">:</span> <span class="s2">&quot; 28th November 2017&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;state_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Haryana&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;address_wc&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;under_acts&quot;</span><span class="p">:</span> <span class="s2">&quot;Motor Vehicles Act&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;address_district&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;nature_of_disposal&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;uniq_case_id&quot;</span><span class="p">:</span> <span class="s2">&quot;e62aad327db4ec520d7312ad660ab851&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name_wc&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">&quot;business_category&quot;</span><span class="p">:</span> <span class="s2">&quot;Motor Vehicles&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;filing_no&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;case_category&quot;</span><span class="p">:</span> <span class="s2">&quot;criminal&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;address_street&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Ayush s o Sanjay Singla&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;dist_code&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+      <span class="s2">&quot;state_code&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+      <span class="s2">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pdf-reports-springrole.s3.amazonaws.com/governmentReport/0.698914320380329&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;address_state&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;court_no_judge&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;decision_date&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;court_no_name&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;under_sections&quot;</span><span class="p">:</span> <span class="s2">&quot;53&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;court_name&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;case_no_year&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;case_code&quot;</span><span class="p">:</span> <span class="s2">&quot;204100086582017&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;dist_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Hisar&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;case_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Pending&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;police_station&quot;</span><span class="p">:</span> <span class="s2">&quot;Traffic&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;case_year&quot;</span><span class="p">:</span> <span class="s2">&quot;2017&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;registration_no&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;case_decision_date&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;purpose_of_hearing&quot;</span><span class="p">:</span> <span class="s2">&quot; Appereance&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;case_status&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;fir_no&quot;</span><span class="p">:</span> <span class="s2">&quot;0              &quot;</span><span class="p">,</span>
+      <span class="s2">&quot;md5&quot;</span><span class="p">:</span> <span class="s2">&quot;96baa5ada5caaf925769af05596556ce&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;raw_address&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;court_code&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+      <span class="s2">&quot;cnr&quot;</span><span class="p">:</span> <span class="s2">&quot;HRHS020162142017&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;data_category&quot;</span><span class="p">:</span> <span class="s2">&quot; The_Motor_Vehicles_Act__1988 The_Delhi_Motor_Vehicles_Taxation_Act__1962 53&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;global_category&quot;</span><span class="p">:</span> <span class="s2">&quot;motor police&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;oparty&quot;</span><span class="p">:</span> <span class="s2">&quot;State of Haryana&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">72.58</span><span class="p">,</span>
+      <span class="s2">&quot;model_score&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">4.394297</span>
+  <span class="p">}</span>
+          <span class="p">],</span>
+          <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;completed&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5e6f883229155a001d00a8f4&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;belongsTo&quot;</span><span class="p">:</span> <span class="s2">&quot;5e6f882629155a001d00a8f3&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Piyush&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;897h9h7977997&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;fatherName&quot;</span><span class="p">:</span> <span class="s2">&quot;Sanjay &quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-03-16T14:07:46.285Z&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;updatedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-03-16T14:07:46.285Z&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;__v&quot;</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>year</strong> denotes the year in which the court case is registered.</p>
+<p><strong>state_name</strong> denotes the state in which the court case has been registered.</p>
+<p><strong>case_category</strong> denotes the category of the court case</p>
+<p><strong>uniq_case_id</strong> Unique id assigned to the court case</p>
+</div>
 </div>
 </div>
 

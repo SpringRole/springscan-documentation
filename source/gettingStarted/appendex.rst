@@ -184,6 +184,42 @@ Aadhaar
 
 **age_match** will be true if age from ocr and goverment are same.
 
+GST Certficate:
+****************
+
+**success Response**
+
+.. code::
+	  
+        {
+        "result": "id_found",
+        "message": "Id was found in the source",
+        "success": true,
+        "ocr": {
+            "address": "FIRST AND FOURTH FLOOR, NO 20, LAKSHMI PLAZA, KRISHNANAGAR INDUSTRIAL LAYOUT, HOSUR ROAD,",
+            "constitution_of_business": "Private Limited Company",
+            "date_of_liability": "2017-07-24",
+            "gstin": "29AAYCS8889G1ZZ",
+            "is_provisional": false,
+            "legal_name": "SPRINGROLE INDIA PRIVATE LIMITED",
+            "pan_number": "AAYCS8889G",
+            "trade_name": "",
+            "type_of_registration": "Regular",
+            "valid_upto": "2017-07-24"
+        },
+        "matched_information": {
+            "message": "OCR Data has been verified with government source",
+            "gstin_match": true,
+            "legal_name_match": 100,
+            "status": "id_found"
+           }
+       }
+
+**gstin_match** will be true if gstin from ocr and goverment are same.
+
+**legal_name_match** will be percentage match  of scanned legal_name and government retrieved legal_name.
+
+
 Appendex 2
 ----------
 
@@ -260,3 +296,87 @@ Appendex 2
 **govResult** is government result object, filled after government verification (5) api is called
 
 **document1** is the link of document
+
+Court Check
+***********
+
+**success response**
+
+.. code::
+		
+	{
+      "reports": [
+         {
+            "year": "2017",
+            "subject": null,
+            "address_taluka": null,
+            "source": "ecourt",
+            "type": 1,
+            "next_hearing_date": " 21st December 2017",
+            "address_pincode": null,
+            "first_hearing_date": " 28th November 2017",
+            "state_name": "Haryana",
+            "address_wc": 0,
+            "id": null,
+            "under_acts": "Motor Vehicles Act",
+            "address_district": null,
+            "nature_of_disposal": null,
+            "uniq_case_id": "e62aad327db4ec520d7312ad660ab851",
+            "name_wc": 5,
+            "business_category": "Motor Vehicles",
+            "filing_no": null,
+            "case_category": "criminal",
+            "address_street": null,
+            "name": "Ayush s o Sanjay Singla",
+            "dist_code": 7,
+            "state_code": 14,
+            "link": "https://pdf-reports-springrole.s3.amazonaws.com/governmentReport/0.698914320380329",
+            "address_state": null,
+            "court_no_judge": null,
+            "decision_date": null,
+            "court_no_name": null,
+            "under_sections": "53",
+            "court_name": null,
+            "case_no_year": null,
+            "address": null,
+            "case_code": "204100086582017",
+            "dist_name": "Hisar",
+            "case_type": "Pending",
+            "police_station": "Traffic",
+            "case_year": "2017",
+            "registration_no": null,
+            "case_decision_date": null,
+            "purpose_of_hearing": " Appereance",
+            "case_status": null,
+            "fir_no": "0              ",
+            "md5": "96baa5ada5caaf925769af05596556ce",
+            "raw_address": null,
+            "court_code": 4,
+            "cnr": "HRHS020162142017",
+            "data_category": " The_Motor_Vehicles_Act__1988 The_Delhi_Motor_Vehicles_Taxation_Act__1962 53",
+            "global_category": "motor police",
+            "oparty": "State of Haryana",
+            "score": 72.58,
+            "model_score": -4.394297
+        }
+		],
+		"status": "completed",
+		"_id": "5e6f883229155a001d00a8f4",
+		"belongsTo": "5e6f882629155a001d00a8f3",
+		"query": {
+			"name": "Piyush",
+			"address": "897h9h7977997",
+			"fatherName": "Sanjay "
+		},
+		"createdAt": "2020-03-16T14:07:46.285Z",
+		"updatedAt": "2020-03-16T14:07:46.285Z",
+		"__v": 0
+	}
+	
+**year** denotes the year in which the court case is registered.
+
+**state_name** denotes the state in which the court case has been registered.
+
+**case_category** denotes the category of the court case
+
+**uniq_case_id** Unique id assigned to the court case
