@@ -14,11 +14,14 @@ The SpringScan API is organized around REST. Our API has predictable resource-or
 .. toctree::
    :caption: Getting Started
    :maxdepth: 1
-   
-   gettingStarted/Introduction
-   gettingStarted/Getting started with the APIs
+
+   gettingStarted/introduction
    gettingStarted/authentication
    gettingStarted/appendex
+
+
+
+
 
 
 

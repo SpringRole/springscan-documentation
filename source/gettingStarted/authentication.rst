@@ -41,11 +41,6 @@ Client needs to send JWT token in the header, along with client Token to success
 	* email (string): Email registered in springscan. 
 	* password (string): Password registered in springscan.
 
-**Error Codes and Messages**
-	
-	* 500: Either Email/Phone number, Password is missing in request 
-	* 404: User not found
-	* 403: Password entered in request is incorrect
 
 Upload Documents
 ----------------
@@ -72,21 +67,6 @@ We aim to provide clients with option to host their documents with us. The menti
 		  -F person_id=5df35fa819bd2a8d8663371c \
 		  -F 'ind_aadhaar=@/Users/karanahuja/Documents/My IDs/aadhaar.png'
 
-**Example Response**
-	.. code::
-
-	{
-	    "ind_aadhaar": {
-	        "Location": "https://pdf-reports-springrole.s3.amazonaws.com/5df35fa819bd2a8d8663371c/adhaar.png",
-	        "Bucket": "pdf-reports-springrole",
-	        "originalName": "adhaar.png",
-	        "mimeType": "image/png"
-	    },
-	    "belongs_to": "5df35fa819bd2a8d8663371c",
-	    "s3_paths": "5ea04cb5af006f001c24ef52",
-	    "person_id": "5df35fa819bd2a8d8663371c",
-	    "is_new_person": false
-	}
 
 **Query Parameters**
 
@@ -98,13 +78,6 @@ We aim to provide clients with option to host their documents with us. The menti
  	* ind_voter_id (Optional): Voter ID file
  	* ind_driving_license (Optional): DL file
  	* ind_passport (Optional): Passport file
-
-**Error Codes and Messages**
-	
-	* 401: Autorization token is missing in request
-	* 500: Autorization token is expired/Person ID is not valid
-	* 404: Person ID not found
-	* 401: User does not exist
 
 Initialize API
 --------------
@@ -118,7 +91,7 @@ This API is used to initialize a **Person** with us. The person is initialized w
 
 .. note:: 
 	**Optional**: 
-	If you created a Person in Upload documents API, you can skip calling initialize and move to Add/Update document API. Alternatively, you can call initialize with personID to attach documents against the person.
+	If you created a Person in Upload documents API, you can skip calling initialize and move to upload document 	API. Alternatively, you can call initialize with personID to attach documents against the person.
 
 
 .. note:: 
@@ -145,6 +118,7 @@ This API is used to initialize a **Person** with us. The person is initialized w
 			"document2": "<optional_back_url>",
 		}'
 
+
 **Query Parameters**
 	
   * docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate
@@ -152,13 +126,7 @@ This API is used to initialize a **Person** with us. The person is initialized w
   * document2: (optional) back url of document
   * selfie: selfie of person
   * Header: Client Token and Auth Token
-  * personId: person id
-
-**Error Codes and Messages**
-	
-	* 401: Unauthorized request
-	* 500: Autorization token sent is expired
-	* 404: Doc type is missing in request/User or Person ID not found
+  * personId: person id.
 
 Add/Update Document For Person
 ------------------------------
@@ -195,58 +163,11 @@ Adds a new document to person or updates an existing document.
 			"document1" = "https://springverify-assets-id.s3.amazonaws.com/373/addressDoc-front"	
 		    }'
 
-**Example Response**
- 	.. code::
-
-	{
-	    "person": {
-	        "name": {
-	            "first": "MEGHA",
-	            "last": "BANSAL",
-	            "middle": "BANSAL"
-	        },
-	        "documents": {
-	            "ind_gst_certificate": {
-	                "result": {
-	                    "address": "FIRST AND FOURTH FLOOR, NO 20, LAKSHMI PLAZA, KRISHNANAGAR INDUSTRIAL LAYOUT, HOSUR ROAD,",
-	                    "constitution_of_business": "Private Limited Company",
-	                    "date_of_liability": "2017-07-24",
-	                    "gstin": "29AAYCS8889G1ZZ",
-	                    "is_provisional": false,
-	                    "legal_name": "SPRINGROLE INDIA PRIVATE LIMITED",
-	                    "pan_number": "AAYCS8889G",
-	                    "trade_name": "",
-	                    "type_of_registration": "Regular",
-	                    "valid_upto": "2017-07-24"
-	                },
-	                "manualObj": null,
-	                "status": "completed",
-	                "faceMatched": false,
-	                "matchResult": null,
-	                "matchedInformation": null,
-	                "govResult": null,
-	                "request_id": "53e6719c-9f8f-4018-b7ad-fd4b24478be2",
-	                "created_by": "automatic",
-	                "_id": "5ea04e0dad178e7135373021",
-	                "docType": "ind_gst_certificate",
-	                "document1": "https://springverify-assets-id.s3.amazonaws.com/373/addressDoc-front",
-	                "belongsTo": "5df35fa819bd2a8d8663371c",
-	                "createdAt": "2020-04-22T14:00:57.289Z",
-	                "updatedAt": "2020-04-22T14:00:57.289Z",
-	                "__v": 0
-	            }
-	        }
-	    }
-	}
 **Query Parameters**
 	
   * document1: Url of document
   * document2 (optional): back url of document
   * docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate
-
- **Error Codes and Messages**
-	
-	* 404: Person not found
 
 Selfie Quality Detection
 ----------------
@@ -265,38 +186,9 @@ Returns quality of selfie image
 		--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZTMwN2IwNGNkNWQ5YTAzMTgwYzMwYWMiLCJpYXQiOjE1ODYzNDU0ODUsImV4cCI6MTU5NDk4NTQ4NX0.7WOKNdv-wZ21cYVKuE8tMF2waecvC1NGUqtyV9pDjKE' \
 		--header 'Content-Type: application/json' \
 		--data-raw '{
-			"selfie_url": "https://image.shutterstock.com/image-photo/pretty-mixed-race-woman-taking-260nw-363424883.jpg",
-			"person_id": "5ea03117af006f001c24ef50"
+			"selfie_url": "<image_url>",
+			"person_id": "<if_generated_earlier>"
 		}'
-
-**Example Response**
- 	.. code::
-
-	{
-	    "face_box": {
-	        "height": 100,
-	        "left": 194,
-	        "top": 66,
-	        "width": 66
-	    },
-	    "face_coverage": {
-	        "message": "too far from the camera",
-	        "percentage": 6,
-	        "status": "not_optimal"
-	    },
-	    "face_detected": true,
-	    "face_quality": {
-	        "message": "optimal",
-	        "status": "optimal"
-	    },
-	    "is_live": true,
-	    "multiple_faces_detected": false,
-	    "person_id": "5ea03117af006f001c24ef50",
-	    "is_updated_for_user": true,
-	    "selfie": {
-	        "url": "https://image.shutterstock.com/image-photo/pretty-mixed-race-woman-taking-260nw-363424883.jpg"
-	    }
-	}
 
 **Query Parameters**
 	* selfie_url: Hosting url or Base64 of selfie image
@@ -310,12 +202,7 @@ Returns quality of selfie image
 	* is_live: boolean for liveliness detection
 	* multiple_faces_detected: boolean for multiple faces detection
 	* person_id: created or returned person's id
-	* is_updated_for_user: if true, sent selfie was successfully validated and attached to the user. if false, either selfie validation failed or replace was false in query
-
-**Error Codes and Messages**
-	
-	* 404: Person/User not found
-	* 400: Bad request, image unclear
+	* is_updated_for_user: if true, sent selfie was successfully validated and attached to the user. if false, either selfie validation failed or replace was false in query.
 
 
 Add/Update Selfie For Person
@@ -344,11 +231,6 @@ Adds a new Selfie to person or updates an existing Selfie.
 	* selfieUrl: Url of selfie
 	* Header: Client Token and Auth Token
 
-**Error Codes and Messages**
-	
-	* 401: Unauthorized request/Person not found
-	* 400: Authorization token is expired
-
 Compare Documentation And Selfie
 --------------------------------
 
@@ -370,36 +252,10 @@ Does a compare of document and selfie, for a match. If User document image and u
 		  -H 'cache-control: no-cache' \
 		  -d 'docType=ind_driving_license'
 
-**Example Response**
- 	.. code::
-		
-	{
-	    "matchResult": {
-	        "image_1": {
-	            "face_detected": true,
-	            "face_quality": "Good"
-	        },
-	        "image_2": {
-	            "face_detected": true,
-	            "face_quality": "Good"
-	        },
-	        "is_a_match": false,
-	        "match_score": 25.377161026000977,
-	        "review_recommended": false
-	    }
-}
-
-
 **Query Parameters**
 	
 	* docType :ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport
 	* Header: Client Token and Auth Token
-
-**Error Codes and Messages**
-	
-	* 401: Unauthorized request/Person not found
-	* 400: Authorization token is expired
-	* 404: Selfie/document file missing
 
 
 Government Verification
@@ -417,13 +273,6 @@ Initiates government verification
 **Query Parameters**
 	
 	* Header: Client Token and Auth Token
-
-**Error Codes and Messages**
-	
-	* 401: Unauthorized request/Person not found
-	* 400: Authorization token is expired
-	* 404: Doctype missing in request
-	* 500: PersonID missing in request/Invalid DocType/Document doesn't exist for PersonID
 
 Government Verification (without ocr)
 -------------------------------------
@@ -501,12 +350,6 @@ Initiates government verification on id number, name and date of birth or on gst
    For response check :doc:`appendex` 1
    as this does not go through complete ocr, matched information will be limited to data provided
 
-**Error Codes and Messages**
-	
-	* 401: Unauthorized request
-	* 500: Authorization token is expired
-	* 404: Doctype missing in request/Person not found
-	* 500: Invalid DocType
 
 Court Check API
 ---------------
@@ -542,10 +385,7 @@ Fetches the court case reports matching the name,fatherName and address
 	* Address
 	* Header: Client Token and Auth Token
 
-**Error Codes and Messages**
-	
-	* 401: Unauthorized request/Person not found
-	* 500: Authorization token is expired/IRequest params (Name/Father's Name/Address) is missing
+
 
 Fetch Person API
 ----------------
@@ -573,13 +413,6 @@ Fetches a person information
 	
 	* Header: Client Token and Auth Token
 
-**Error Codes and Messages**
-	
-	* 401: Unauthorized request/Person not found
-	* 400: Authorization token is expired
-	* 404: Doctype missing in request
-	* 500: PersonID missing in request/Invalid DocType/Document doesn't exist for PersonID
-
 Aadhaar Masking 
 ----------------
 
@@ -597,55 +430,12 @@ Masks an Aadhaar image to hide first 12 digits of Aadhaar ID number
 		--header 'Content-Type: application/json' \
 		--data-raw '{
 			"aadhaar_url": [
-				"https://pdf-reports-springrole.s3.amazonaws.com/ind_aadhaar_1574775334523.jpg",
-				"https://pdf-reports-springrole.s3.amazonaws.com/ind_aadhaar_1574775334523.jpg"],
+				"<aadhar_url_1>",
+				"<aadhar_url_2>"],
 			"consent": true
 			}'
-
-**Example Response**
- 	.. code::
-
-	[
-	    {
-	        "action": "mask",
-	        "completed_at": "2020-04-22T17:22:12+05:30",
-	        "created_at": "2020-04-22T17:22:08+05:30",
-	        "group_id": "b101b3d0-848f-11ea-b554-8b104684043b",
-	        "request_id": "f6dc6716-dc17-40ae-ad5f-13eff5ae6c1f",
-	        "result": {
-	            "document_url": "https://storage.googleapis.com/storage.idfy.com/15574d87-d6b1-425d-b2a5-85082625e55b.jpg?Expires=1587642732&GoogleAccessId=api-gateway-prod%40idfy-1338.iam.gserviceaccount.com&Signature=RGnVtMCA%2F86qBTptG1dbFDrF5HDFHlV35PnIWZCyf0Cx6tkirzEGkuN%2ByXIywn8S4OEs1msgKf0EE3JddvhzQbnQD8%2BCJjVeWSjqENUSIbdUgujK1XEQqg5RS0o3knbV1hkGRa410fZrA4wM%2B%2BTpCV7LBTQtgygNJQBou5mk5bXk%2FpsUH1X3iAkTMurGWfHpJr9PrSuXIFf%2Fp%2BcNHhoiUJ8Baoy6OaA1u9vvc7j%2Fi6Ke%2Fz3UgPbYa%2F5Rjvbuq8qgkAKSBxro2MNEJWUmvw2QsDvSERvCBa8k49xPhcc%2FDrNe%2Bw4OaEOQExmE41hyTNnEmHG7HOD1GgOTdv%2F0t%2Bd22A%3D%3D",
-	            "id_number_found": true,
-	            "original_document_url": "https://pdf-reports-springrole.s3.amazonaws.com/ind_aadhaar_1574775334523.jpg",
-	            "self_link": ""
-	        },
-	        "status": "completed",
-	        "task_id": "b1018cc0-848f-11ea-b554-8b104684043b",
-	        "type": "ind_aadhaar"
-	    },
-	    {
-	        "action": "mask",
-	        "completed_at": "2020-04-22T17:22:12+05:30",
-	        "created_at": "2020-04-22T17:22:08+05:30",
-	        "group_id": "b101b3d2-848f-11ea-b554-8b104684043b",
-	        "request_id": "c592ac66-00e4-4bab-9e81-7958b0655f81",
-	        "result": {
-	            "document_url": "https://storage.googleapis.com/storage.idfy.com/67cf2b89-156e-4e01-9c1b-6b34931e5dcd.jpg?Expires=1587642732&GoogleAccessId=api-gateway-prod%40idfy-1338.iam.gserviceaccount.com&Signature=ZNH8ZDIViftgZNqaEv56Jisx%2FOP30CtSp0u%2FClJAwowwDb29fNOoPihdmZ%2FhzNojbMsVms%2FnS%2FnF0EIamDwDkCNiN8tAsSauO6z3Mk5%2Br%2BscdZ7sNpwVZOmEZqTiXQXWDDH%2FiyKknJlDBAfe5G9%2B4SaxgrUOFcezrzl7RlvmthIpW%2F4AFX3nVyLVArBAwL1jdch9W11PhCSDCyxA1rxO4RBImXXd7guePak0lSgvd1TAOdfuPYVRP5gFEWHn4Ao9Er49BOlnHm9UI9GDF%2FD3AhJf6LO2Z9ZTc0%2FQcJ5z5ghqG5K5AhX%2F9d3eoLCjAx8ICnjtuYVOeO8YSyus8LArNw%3D%3D",
-	            "id_number_found": true,
-	            "original_document_url": "https://pdf-reports-springrole.s3.amazonaws.com/ind_aadhaar_1574775334523.jpg",
-	            "self_link": ""
-	        },
-	        "status": "completed",
-	        "task_id": "b101b3d1-848f-11ea-b554-8b104684043b",
-	        "type": "ind_aadhaar"
-	    }
-	]
 
 **Query Parameters**
 	
 	* aadhaar_url: can be an array of aadhaar urls or a single url
 	* consent: we will go ahead with masking only when consent is true from you
-
-**Error Codes and Messages**
-	
-	* 401: Unauthorized request/Person not found
-	* 500: Authorization token is expired/Request params (Aadhaar URL/Consent Key) is missing or wrong
