@@ -1,7 +1,6 @@
 SpringScan REST API's
 =====================
 
-
 Login
 -----
 
@@ -170,7 +169,7 @@ Adds a new document to person or updates an existing document.
   * docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate
 
 Selfie Quality Detection
-----------------
+------------------------
 
 Returns quality of selfie image
 
@@ -439,3 +438,8 @@ Masks an Aadhaar image to hide first 12 digits of Aadhaar ID number
 	
 	* aadhaar_url: can be an array of aadhaar urls or a single url
 	* consent: we will go ahead with masking only when consent is true from you
+
+**Error Codes and Messages**
+	
+	* 401: Unauthorized request/Person not found
+	* 500: Authorization token is expired/Request params (Aadhaar URL/Consent Key) is missing or wrong

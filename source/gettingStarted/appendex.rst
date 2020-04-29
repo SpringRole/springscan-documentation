@@ -380,4 +380,3 @@ Court Check
 **case_category** denotes the category of the court case
 
 **uniq_case_id** Unique id assigned to the court case
-

@@ -372,3 +372,11 @@ Court Check
 		"updatedAt": "2020-03-16T14:07:46.285Z",
 		"__v": 0
 	}
+	
+**year** denotes the year in which the court case is registered.
+
+**state_name** denotes the state in which the court case has been registered.
+
+**case_category** denotes the category of the court case
+
+**uniq_case_id** Unique id assigned to the court case
