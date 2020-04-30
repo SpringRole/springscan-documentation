@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Appendex" href="appendex.html" />
-    <link rel="prev" title="Introduction" href="introduction.html" /> 
+    <link rel="prev" title="Getting started with the APIs" href="Getting started with the APIs.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,18 +87,21 @@
             
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Getting started with the APIs.html">Getting started with the APIs</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">SpringScan REST API’s</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#login">Login</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#upload-documents">Upload Documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#initialize-api">Initialize API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#add-update-document-for-person">Add/Update Document For Person</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selfie-quality-detection">Selfie Quality Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#add-update-selfie-for-person">Add/Update Selfie For Person</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#compare-documentation-and-selfie">Compare Documentation And Selfie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#government-verification">Government Verification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#government-verification-without-ocr">Government Verification (without ocr)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#court-check-api">Court Check API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fetch-person-api">Fetch Person API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aadhaar-masking">Aadhaar Masking</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="appendex.html">Appendex</a></li>
@@ -222,7 +225,7 @@
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW&#39;</span> \
   <span class="o">-</span><span class="n">F</span> <span class="n">person_id</span><span class="o">=</span><span class="mi">5</span><span class="n">df35fa819bd2a8d8663371c</span> \
-  <span class="o">-</span><span class="n">F</span> <span class="s1">&#39;ind_aadhaar=@/Users/karanahuja/Documents/My IDs/adhaar.png&#39;</span>
+  <span class="o">-</span><span class="n">F</span> <span class="s1">&#39;ind_aadhaar=@/Users/karanahuja/Documents/My IDs/aadhaar.png&#39;</span>
 </pre></div>
 </div>
 </dd>
@@ -270,9 +273,10 @@ Response will contain document object with OCR data. For Response look at the en
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
   <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{</span>
-    <span class="s2">&quot;selfie&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pdf-reports-springrole.s3.amazonaws.com/face_image_1573552012776.jpg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;selfie&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;selfie_url&gt;&quot;</span><span class="p">,</span>
     <span class="s2">&quot;docType&quot;</span><span class="p">:</span> <span class="s2">&quot;ind_pan&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;document1&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pdf-reports-springrole.s3.amazonaws.com/ind_pan_1573552012699.jpg&quot;</span>
+    <span class="s2">&quot;document1&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;document_front_url&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;document2&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;optional_back_url&gt;&quot;</span><span class="p">,</span>
 <span class="p">}</span><span class="s1">&#39;</span>
 </pre></div>
 </div>
@@ -281,7 +285,7 @@ Response will contain document object with OCR data. For Response look at the en
 <p><strong>Query Parameters</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport, ind_gst_certificate</li>
+<li>docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate</li>
 <li>document1: Url of document</li>
 <li>document2: (optional) back url of document</li>
 <li>selfie: selfie of person</li>
@@ -331,9 +335,47 @@ Use the token which was returned after add candidate API.</p>
 <div><ul class="simple">
 <li>document1: Url of document</li>
 <li>document2 (optional): back url of document</li>
-<li>docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport, ind_gst_certificate</li>
+<li>docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate</li>
 </ul>
 </div></blockquote>
+</div>
+<div class="section" id="selfie-quality-detection">
+<h2>Selfie Quality Detection<a class="headerlink" href="#selfie-quality-detection" title="Permalink to this headline">¶</a></h2>
+<p>Returns quality of selfie image</p>
+<p><strong>Path</strong> : /face/checkQuality</p>
+<p><strong>Method</strong> : POST</p>
+<dl class="docutils">
+<dt><strong>Example Request</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">--</span><span class="n">location</span> <span class="o">--</span><span class="n">request</span> <span class="n">POST</span> <span class="s1">&#39;https://api-dev.springscan.springverify.com/face/checkQuality&#39;</span> \
+<span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c&#39;</span> \
+<span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZTMwN2IwNGNkNWQ5YTAzMTgwYzMwYWMiLCJpYXQiOjE1ODYzNDU0ODUsImV4cCI6MTU5NDk4NTQ4NX0.7WOKNdv-wZ21cYVKuE8tMF2waecvC1NGUqtyV9pDjKE&#39;</span> \
+<span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Content-Type: application/json&#39;</span> \
+<span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">raw</span> <span class="s1">&#39;{</span>
+        <span class="s2">&quot;selfie_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;image_url&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;person_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;if_generated_earlier&gt;&quot;</span>
+<span class="p">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Query Parameters</strong></dt>
+<dd><ul class="first last simple">
+<li>selfie_url: Hosting url or Base64 of selfie image</li>
+<li>person_id: optional, if provided , selfie quality will be stored against the person. else not.</li>
+<li>replace: optional, attaches the sent selfie url with the person . default is true.</li>
+</ul>
+</dd>
+<dt><strong>Response Parameters</strong></dt>
+<dd><ul class="first last simple">
+<li>face_box : box dimensions</li>
+<li>face_coverage: contains a message comment about selfie with percentage and status</li>
+<li>face_detected: boolean for face detection</li>
+<li>is_live: boolean for liveliness detection</li>
+<li>multiple_faces_detected: boolean for multiple faces detection</li>
+<li>person_id: created or returned person’s id</li>
+<li>is_updated_for_user: if true, sent selfie was successfully validated and attached to the user. if false, either selfie validation failed or replace was false in query.</li>
+</ul>
+</dd>
+</dl>
 </div>
 <div class="section" id="add-update-selfie-for-person">
 <h2>Add/Update Selfie For Person<a class="headerlink" href="#add-update-selfie-for-person" title="Permalink to this headline">¶</a></h2>
@@ -384,7 +426,7 @@ Use the token which was returned after add candidate API.</p>
 <p><strong>Query Parameters</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>docType :ind_pan, ind_voter_id, ind_driving_license, ind_adhaar, ind_passport</li>
+<li>docType :ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport</li>
 <li>Header: Client Token and Auth Token</li>
 </ul>
 </div></blockquote>
@@ -483,7 +525,7 @@ as this does not go through complete ocr, matched information will be limited to
   <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;cache-control: no-cache&#39;</span> \
   <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{</span>
         <span class="s2">&quot;name&quot;</span> <span class="o">=</span> <span class="s2">&quot;Piyush&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;fatherName&quot;</span> <span class="o">=</span> <span class="s2">&quot;Anand&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fatherName&quot;</span> <span class="o">=</span> <span class="s2">&quot;Sanjay&quot;</span><span class="p">,</span>
         <span class="s2">&quot;address&quot;</span> <span class="o">=</span> <span class="s2">&quot;897h9h7977997&quot;</span>
     <span class="p">}</span><span class="s1">&#39;</span>
 </pre></div>
@@ -507,7 +549,7 @@ as this does not go through complete ocr, matched information will be limited to
 <div class="section" id="fetch-person-api">
 <h2>Fetch Person API<a class="headerlink" href="#fetch-person-api" title="Permalink to this headline">¶</a></h2>
 <p>Fetches a person information</p>
-<p><strong>Path</strong> : /user/person/:personID</p>
+<p><strong>Path</strong> : /user/person/:personId</p>
 <p><strong>Method</strong> : POST</p>
 <dl class="docutils">
 <dt><strong>Example Request</strong></dt>
@@ -532,6 +574,41 @@ as this does not go through complete ocr, matched information will be limited to
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="aadhaar-masking">
+<h2>Aadhaar Masking<a class="headerlink" href="#aadhaar-masking" title="Permalink to this headline">¶</a></h2>
+<p>Masks an Aadhaar image to hide first 12 digits of Aadhaar ID number</p>
+<p><strong>Path</strong> : /verification/maskAadhaar</p>
+<p><strong>Method</strong> : POST</p>
+<dl class="docutils">
+<dt><strong>Example Request</strong></dt>
+<dd><div class="code first last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">--</span><span class="n">location</span> <span class="o">--</span><span class="n">request</span> <span class="n">POST</span> <span class="s1">&#39;api-dev.springscan.springverify.com/verification/maskAadhaar&#39;</span> \
+<span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Token: 00ffc975-eafa-4451-9a71-aad62623c963&#39;</span> \
+<span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Content-Type: application/json&#39;</span> \
+<span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">raw</span> <span class="s1">&#39;{</span>
+        <span class="s2">&quot;aadhaar_url&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;&lt;aadhar_url_1&gt;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;&lt;aadhar_url_2&gt;&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;consent&quot;</span><span class="p">:</span> <span class="n">true</span>
+        <span class="p">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p><strong>Query Parameters</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>aadhaar_url: can be an array of aadhaar urls or a single url</li>
+<li>consent: we will go ahead with masking only when consent is true from you</li>
+</ul>
+</div></blockquote>
+<p><strong>Error Codes and Messages</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>401: Unauthorized request/Person not found</li>
+<li>500: Authorization token is expired/Request params (Aadhaar URL/Consent Key) is missing or wrong</li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -545,7 +622,7 @@ as this does not go through complete ocr, matched information will be limited to
         <a href="appendex.html" class="btn btn-neutral float-right" title="Appendex" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Getting started with the APIs.html" class="btn btn-neutral float-left" title="Getting started with the APIs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
