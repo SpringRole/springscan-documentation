@@ -9,7 +9,7 @@ User Flow
 
 Let's get started by understanding how SpringScan helps in solving multiple use cases of customers through this User Flow:
 
-		.. image:: https://pdf-reports-springrole.s3.amazonaws.com/5ea7ff114efb855d174ebbde/Userflow.jpeg  
+		.. image:: https://pdf-reports-springrole.s3.amazonaws.com/5eb514d25a47f32b08257bc6/SpringScan%20Userflow%20%281%29.jpeg  
 
 SpringScan API Use Cases
 ------------------------

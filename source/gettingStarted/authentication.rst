@@ -526,7 +526,7 @@ API used to verify a bank account and ifsc code combination
 			--header 'Postman-Token: 3027720f-71ef-4877-b851-8745e650b4c5' \
 			--header 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
 			--header 'cache-control: no-cache' \
-			--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTg4MTQ2MDIxLCJleHAiOjE1OTY3ODYwMjF9.6z1Gz5Q7bhakjbgmpWk3uz9uK92YQyYunxLHMZ01AbI
+			--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTg4MTQ2MDIxLCJleHAiOjE1OTY3ODYwMjF9.6z1Gz5Q7bhakjbgmpWk3uz9uK92YQyYunxLHMZ01AbI' \
 			--data-urlencode 'name=Sameera' \
 			--data-urlencode 'phone=9908712345' \
 			--data-urlencode 'bankAccount=026291800001191' \
@@ -546,8 +546,8 @@ API used to verify a bank account and ifsc code combination
 
 **Error Codes and Messages**
 	
-	* 200: Bank account/IFSC code or both are invalid 
-	* 422: Values are Unprocessable
+	* 200: Bank account and IFSC combination are verified / Bank account or IFSC code or both are invalid.
+	* 422: Values are Unprocessable.
 
 UPI ID Validation
 -----------------
@@ -566,7 +566,7 @@ API used to verify an existing UPI handle.
 			--header 'Postman-Token: 3027720f-71ef-4877-b851-8745e650b4c5' \
 			--header 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
 			--header 'cache-control: no-cache' \
-			--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTg4MTQ2MDIxLCJleHAiOjE1OTY3ODYwMjF9.6z1Gz5Q7bhakjbgmpWk3uz9uK92YQyYunxLHMZ01AbI
+			--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTg4MTQ2MDIxLCJleHAiOjE1OTY3ODYwMjF9.6z1Gz5Q7bhakjbgmpWk3uz9uK92YQyYunxLHMZ01AbI' \
 			--data-urlencode 'name=Shrey' \
 			--data-urlencode 'vpa=success@upi'
 
@@ -582,8 +582,8 @@ API used to verify an existing UPI handle.
 
 **Error Codes and Messages**
 	
-	* 200: No Account linked with VPA
-	* 422: Values are Unprocessable
+	* 200: VPA verification was successful / No Account linked with VPA.
+	* 422: Values are Unprocessable.
 
 Court Check API
 ---------------
