@@ -14,8 +14,7 @@ Let's get started by understanding how SpringScan helps in solving multiple use 
 SpringScan API Use Cases
 ------------------------
 
-Identity Verification
-+++++++++++++++++++++
+**Identity Verification**
 Ensure if the person on government photo identity card are who they claim
 
 * Determine the liveliness and quality of your selfie’ with us
@@ -23,8 +22,7 @@ Ensure if the person on government photo identity card are who they claim
 * Quick response with yes or no decision in seconds
 * Safely secure your personal document (govt ID and Selfie images) on our cloud storage
 
-Know Your Customer
-++++++++++++++++++
+**Know Your Customer**
 With few simple steps, know your customer by verifying their government ID details from bona fide sources
 
 * OCR technology to auto detect text details on govt ID 
@@ -33,16 +31,15 @@ With few simple steps, know your customer by verifying their government ID detai
 * Intuitive and elucidated response with minimal turn around time
 * Catch fake Ids and prevent fraud
 
-Background Verification
-+++++++++++++++++++++++
+
+**Background Verification**
 Know your customer better by identifying any past or impending court case against them through bona fide legal sources
 
 * One step process to run background verification check on court cases
 * Intuitive and detailed response with minimal turn around time
 * Securely and easily establish proof of authenticity to Know Your Customer better 
 
-Aadhar Masking
-++++++++++++++
+**Aadhar Masking**
 Conform to the security and mask your customer Aadhar ID number 
 
 * Mask first 12 digit of Aadhar ID to ensure maximum security

@@ -220,6 +220,51 @@ GST Certficate:
 **legal_name_match** will be percentage match  of scanned legal_name and government retrieved legal_name.
 
 
+Bank Account Validation:
+************************
+
+**Success Response**
+
+.. code::
+	  
+		{
+		"response": {
+			"status": "SUCCESS",
+			"subCode": "200",
+			"message": "Bank Account details verified successfully.",
+			"data": {
+		        	"nameAtBank": "JOHN DOE",
+		        	"accountExists": "YES",
+		        	"amountDeposited": "0",
+		        	"refId": "12669"
+		    		},
+			"bankAccount": "026291800001191",
+			"ifsc": "YESB0000262"
+			}
+		}
+		
+
+UPI ID Validation:
+************************
+
+**Success Response**
+
+.. code::
+	  
+		{
+			"response": {
+			"status": "SUCCESS",
+			"subCode": "200",
+			"message": "VPA verification successful",
+			"data": {
+		        	"nameAtBank": "John Doe",
+		        	"accountExists": "YES"
+		    		},
+			"vpa": "success@upi"
+			}
+		}
+
+
 Appendex 2
 ----------
 

@@ -509,6 +509,82 @@ Initiates government verification on id number, name and date of birth or on gst
 	* 404: Doctype missing in request/Person not found
 	* 500: Invalid DocType
 
+Bank Account Validation
+-----------------------
+
+API used to verify a bank account and ifsc code combination
+
+**Path** : /v2/user/person/validation/bankDetails/:person_id
+
+**Method** : GET
+
+**Example Request**
+    .. code::
+
+		curl --location --request GET 'https://api-dev.springscan.springverify.com/v2/user/person/validation/bankDetails/5df9fdf971b57d2c188ebc62' \
+			--header 'Content-Type: application/x-www-form-urlencoded' \
+			--header 'Postman-Token: 3027720f-71ef-4877-b851-8745e650b4c5' \
+			--header 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
+			--header 'cache-control: no-cache' \
+			--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTg4MTQ2MDIxLCJleHAiOjE1OTY3ODYwMjF9.6z1Gz5Q7bhakjbgmpWk3uz9uK92YQyYunxLHMZ01AbI
+			--data-urlencode 'name=Sameera' \
+			--data-urlencode 'phone=9908712345' \
+			--data-urlencode 'bankAccount=026291800001191' \
+			--data-urlencode 'ifsc=YESB0000262'
+
+.. note::
+	For Response check :doc:`appendex`	1	
+
+**Parameters**
+	
+	* Name: Name of person
+	* Phone: Phone number of person
+	* Bank Account: Account number
+	* IFSC: IFSC code of bank
+	* Path Params: person_id(optional)
+	* Header: Client Token and Auth Token
+
+**Error Codes and Messages**
+	
+	* 200: Bank account/IFSC code or both are invalid 
+	* 422: Values are Unprocessable
+
+UPI ID Validation
+-----------------
+
+API used to verify an existing UPI handle.
+
+**Path** : /v2/user/person/validation/upiID/:person_id
+
+**Method** : GET
+
+**Example Request**
+    .. code::
+
+		curl --location --request GET 'https://api-dev.springscan.springverify.com/v2/user/person/validation/upiID/5df9fdf971b57d2c188ebc62' \
+			--header 'Content-Type: application/x-www-form-urlencoded' \
+			--header 'Postman-Token: 3027720f-71ef-4877-b851-8745e650b4c5' \
+			--header 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
+			--header 'cache-control: no-cache' \
+			--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTg4MTQ2MDIxLCJleHAiOjE1OTY3ODYwMjF9.6z1Gz5Q7bhakjbgmpWk3uz9uK92YQyYunxLHMZ01AbI
+			--data-urlencode 'name=Shrey' \
+			--data-urlencode 'vpa=success@upi'
+
+.. note::
+	For Response check :doc:`appendex`	1	
+
+**Parameters**
+	
+	* Name(optional)
+	* VPA/UPI ID
+	* Path Params: person_id(optional)
+	* Header: Client Token and Auth Token
+
+**Error Codes and Messages**
+	
+	* 200: No Account linked with VPA
+	* 422: Values are Unprocessable
+
 Court Check API
 ---------------
 
