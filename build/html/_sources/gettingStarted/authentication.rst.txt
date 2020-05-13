@@ -497,6 +497,18 @@ Initiates government verification on id number, name and date of birth or on gst
 			"legal_name" : "SPRINGROLE INDIA PRIVATE LIMITED" 
 		}		
 
+**PASSPORT**
+
+.. code::
+		
+		{
+			"personId": ":personId",
+			"doc_type": "ind_passport",
+			"id_number": "J8369854",
+			"first_name" : "SITA MAHA LAKSHMI",
+			"last_name": "RAMADUGULA" 
+		}	
+
 .. note::
    date format is yyyy-mm-dd
    For response check :doc:`appendex` 1
