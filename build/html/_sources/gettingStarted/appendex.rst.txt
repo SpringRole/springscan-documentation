@@ -219,6 +219,50 @@ GST Certficate:
 
 **legal_name_match** will be percentage match  of scanned legal_name and government retrieved legal_name.
 
+Passport
+********
+
+**success Response**
+
+.. code::
+
+        {
+        "result": "id_found",
+        "message": "PASSPORT is Active and the details are matching with MRZ.",
+        "error": "",
+        "success": true,
+        "ocr": {
+            "address": null,
+            "date_of_birth": "1959-09-23",
+            "date_of_expiry": "2021-10-10",
+            "date_of_issue": "2011-10-11",
+            "fathers_name": null,
+            "first_name": "SITA MAHA LAKSHMI",
+            "gender": null,
+            "id_number": "J8369854",
+            "is_scanned": "false",
+            "last_name": "RAMADUGULA",
+            "mothers_name": null,
+            "name_of_spouse": null,
+            "name_on_card": "SITA MAHA LAKSHMI RAMADUGULA",
+            "nationality": null,
+            "place_of_birth": "GUNDUGOLANU",
+            "place_of_issue": "HYDERABAD"
+       },
+       "matched_information": {
+            "message": "OCR Data has been verified with government source",
+            "first_name_match": 84.70588235294117,
+            "last_name_match": 100,
+            "ocr_id_match": true
+            } 
+	   }
+
+**ocr_id_match** will be true if passport_id from ocr and MRZ are same.
+
+**first_name_match** will be percentage match  of scanned first_name and MRZ retreived first_name.
+
+**last_name_match** will be percentage match  of scanned last_name and MRZ retreived last_name.
+
 
 Bank Account Validation:
 ************************
