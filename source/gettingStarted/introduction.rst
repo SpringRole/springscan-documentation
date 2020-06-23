@@ -60,8 +60,8 @@ Environment Urls
 	**Development** : https://api-dev.springscan.springverify.com
 
 	**Credentials** : 
-			* email: test@springscan.com
-			* password: springscan
+			* email: <contact us for your test credentials>
+			* password: <contact us for your test credentials>
 
 
 	**Production** :  https://api.springscan.springverify.com
