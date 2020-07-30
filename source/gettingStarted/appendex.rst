@@ -346,8 +346,6 @@ Appendex 2
 	              "matchResult": null,
 	              "govResult": null,
 	              "request_id": "1b247fa9-df84-463e-aa3f-899758ab6019",
-	              "provider": "idfy",
-	              "_id": "5df9fdfb71b57d2c188ebc63",
 	              "docType": "ind_aadhaar",
 	              "document1": "https://pdf-reports-springrole.s3.amazonaws.com/adhaar.png",
 	              "belongsTo": "5df9fdf971b57d2c188ebc62",
@@ -368,8 +366,6 @@ Appendex 2
 	        "city": null,
 	        "gender": null,
 	        "s3_paths": null,
-	        "_id": "5df9fdf971b57d2c188ebc62",
-	        "addedBy": "5df88fc19ef1c83484090fb0",
 	        "createdAt": "2019-12-18T10:22:49.563Z",
 	        "updatedAt": "2019-12-18T10:23:00.299Z",
 	        "__v": 0
@@ -450,8 +446,6 @@ Court Check
         }
 		],
 		"status": "completed",
-		"_id": "5e6f883229155a001d00a8f4",
-		"belongsTo": "5e6f882629155a001d00a8f3",
 		"query": {
 			"name": "Piyush",
 			"address": "897h9h7977997",

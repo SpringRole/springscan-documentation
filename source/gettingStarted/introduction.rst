@@ -28,7 +28,7 @@ Document Types Supported are
 	   * - Document
 	     - Key
 	     - OCR
-	     - Verifictaion
+	     - Verification
 	   * - PAN
 	     - ind_pan
 	     - Yes
