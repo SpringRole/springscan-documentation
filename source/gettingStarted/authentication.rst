@@ -497,18 +497,6 @@ Initiates government verification on id number, name and date of birth or on gst
 			"legal_name" : "SPRINGROLE INDIA PRIVATE LIMITED" 
 		}		
 
-**PASSPORT**
-
-.. code::
-		
-		{
-			"personId": ":personId",
-			"doc_type": "ind_passport",
-			"id_number": "J8369854",
-			"first_name" : "SITA MAHA LAKSHMI",
-			"last_name": "RAMADUGULA" 
-		}	
-
 .. note::
    date format is yyyy-mm-dd
    For response check :doc:`appendex` 1
@@ -545,14 +533,15 @@ API used to verify a bank account and ifsc code combination
 			--data-urlencode 'ifsc=YESB0000262'
 
 .. note::
+	The API can be called either by providing details in request body or through params.
 	For Response check :doc:`appendex`	1	
 
 **Parameters**
 	
-	* Name: Name of person
-	* Phone: Phone number of person
-	* Bank Account: Account number
-	* IFSC: IFSC code of bank
+	* name: Name of person
+	* phone: Phone number of person
+	* bankAccount : Account number
+	* ifsc: IFSC code of bank
 	* Path Params: person_id(optional)
 	* Header: Client Token and Auth Token
 
@@ -583,12 +572,13 @@ API used to verify an existing UPI handle.
 			--data-urlencode 'vpa=success@upi'
 
 .. note::
+	The API can be called either by providing details in request body or through params.
 	For Response check :doc:`appendex`	1	
 
 **Parameters**
 	
-	* Name(optional)
-	* VPA/UPI ID
+	* name : Name of the Person.
+	* vpa : VPA/UPI ID
 	* Path Params: person_id(optional)
 	* Header: Client Token and Auth Token
 
@@ -738,3 +728,42 @@ Masks an Aadhaar image to hide first 12 digits of Aadhaar ID number
 	
 	* 401: Unauthorized request/Person not found
 	* 500: Authorization token is expired/Request params (Aadhaar URL/Consent Key) is missing or wrong
+
+
+Aadhaar Verification- Via OTP
+-----------------------------
+
+Verify your Aadhaar details with bonafide govt sources in simple two step process.
+
+
+* The First step is an API call which generates link redirecting user to springscan dashboard, where a user can enter Aadhaar ID to verify and phone number linked with it. 
+* The second step involves getting OTP at registered phone number and verifying it with vendor to complete the process and generates a well detailed PDF report with status against each field of ID as verified/failed.
+
+**Path** : /v2/user/person/aadhaarOTPCheck/
+
+**Method** : POST
+
+**Example Request**
+ 	.. code::
+		
+		 curl --location --request POST 'https://api-dev.springscan.springverify.com/v2/user/person/aadhaarOTPCheck/' \
+		--header 'Content-Type: application/x-www-form-urlencoded' \
+		--header '4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
+		--header 'cache-control: no-cache' \
+		--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImluZm9Ac3ByaW5ndmVyaWZ5LmNvbSIsInVzZXJJZCI6IjVlMTczMjIxZjY4OTI4MDAxZGJhYzI1YiIsImlhdCI6MTU5MjU3NzQ1NiwiZXhwIjoxNjAxMjE3NDU2fQ.n8RgpaXeIiUSklg3savogqr_CjapKsOvC4o-phcvIQE' \
+		--data-urlencode 'successUrl= ' \
+		--data-urlencode 'failureUrl= ' \
+		--data-urlencode 'phoneNumber= 9894316749'
+
+**Example Response**
+ 	.. code::
+
+	 	 {
+    			"url": "https://tinyurl.com/y6dmznn7"
+		 }			
+
+**Parameters**
+	
+	* successUrl: we will redirect you to this url if your verification is successful.
+	* failureUrl: we will redirect you to this url if your verification gets failed.
+	* consent: we will go ahead with masking only when consent is true from you.
