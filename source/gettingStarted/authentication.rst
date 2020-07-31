@@ -737,7 +737,7 @@ Verify your Aadhaar details with bonafide govt sources in simple two step proces
 
 
 * The First step is an API call which generates link redirecting user to springscan dashboard, where a user can enter Aadhaar ID to verify and phone number linked with it. 
-* The second step involves getting OTP at registered phone number and verifying it with vendor to complete the process and generates a well detailed PDF report with status against each field of ID as verified/failed.
+* The second step involves getting OTP at registered phone number and verifying it with vendor to complete the process.
 
 **Path** : /v2/user/person/aadhaarOTPCheck/
 
@@ -753,7 +753,7 @@ Verify your Aadhaar details with bonafide govt sources in simple two step proces
 		--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImluZm9Ac3ByaW5ndmVyaWZ5LmNvbSIsInVzZXJJZCI6IjVlMTczMjIxZjY4OTI4MDAxZGJhYzI1YiIsImlhdCI6MTU5MjU3NzQ1NiwiZXhwIjoxNjAxMjE3NDU2fQ.n8RgpaXeIiUSklg3savogqr_CjapKsOvC4o-phcvIQE' \
 		--data-urlencode 'successUrl= ' \
 		--data-urlencode 'failureUrl= ' \
-		--data-urlencode 'phoneNumber= 9894316749'
+		--data-urlencode 'phoneNumber= '
 
 **Example Response**
  	.. code::
@@ -766,4 +766,8 @@ Verify your Aadhaar details with bonafide govt sources in simple two step proces
 	
 	* successUrl: we will redirect you to this url if your verification is successful.
 	* failureUrl: we will redirect you to this url if your verification gets failed.
-	* consent: we will go ahead with masking only when consent is true from you.
+	* phoneNumber: phoneNumber
+
+.. note::
+	| After successful verification , Person can call this API to get the verification result.
+	| https://api-dev.springscan.springverify.com/user/getPersonPublicApi/personId
