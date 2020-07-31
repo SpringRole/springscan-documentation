@@ -123,7 +123,7 @@ This API is used to initialize a **Person** with us. The person is initialized w
 
 .. note:: 
 	**OCR API**:
-	Response will contain document object with OCR data. For Response look at the end of this document (:doc:`appendex` 2.)
+	Response will contain document object with OCR data. For Response look at the end of this document (:ref:`appendex2`)
 
 **Path** : /user/person/initialize
 
@@ -612,7 +612,7 @@ Fetches the court case reports matching the name,fatherName and address
 		    }'
 
 .. note::
-	For Response check :doc:`appendex`	2	
+	For Response check :ref:`appendex2`	
 
 **Query Parameters**
 	
@@ -646,7 +646,7 @@ Fetches a person information
 		  -H 'cache-control: no-cache'
 
 .. note::
-	For Response check :doc:`appendex` 2
+	For Response check :ref:`appendex2`
 
 **Query Parameters**
 	
@@ -770,4 +770,30 @@ Verify your Aadhaar details with bonafide govt sources in simple two step proces
 
 .. note::
 	| After successful verification , Person can call this API to get the verification result.
-	| https://api-dev.springscan.springverify.com/user/getPersonPublicApi/personId
+	| :ref:`getperson`
+
+.. _getperson:
+
+Get Person
+----------
+
+API used to get Person details
+
+**Path** : 	/user/getPersonPublicApi/personId
+
+**Method** : GET
+
+**Example Request**
+ 	.. code::
+		
+		curl --location --request GET 'api-dev.springscan.springverify.com/user/getPersonPublicApi/5f1aeb1d4a40e44a280461a9' \
+		--header 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
+		--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdXJhYmhiYWdyZWNoYTFAZ21haWwuY29tIiwidXNlcklkIjoiNWNkYmFjMTQ4ODY1NzQ0YTIwNGQ1NTA2IiwiaWF0IjoxNTkxMDE3ODc4LCJleHAiOjE1OTk2NTc4Nzh9.Z7Z4XHOzxgK0hyEN3EjucSAB9qIEsHq85GH'
+
+**Parameters**
+
+	* personId : Person Id
+
+.. note::
+	| For Response check this document :ref:`appendex2`
+	
