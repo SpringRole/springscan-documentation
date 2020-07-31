@@ -10,6 +10,8 @@ def setup(app):
 
 extensions = []
 
+autosectionlabel_prefix_document = True
+
 source_suffix = ['.rst']
 
 master_doc = 'index'
@@ -33,4 +35,4 @@ html_static_path = ['_static']
 # intersphinx
 # ===========
 
-extensions += ['sphinx.ext.intersphinx']
+extensions += ['sphinx.ext.intersphinx', 'sphinx.ext.autosectionlabel']
