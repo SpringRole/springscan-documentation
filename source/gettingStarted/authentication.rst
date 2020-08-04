@@ -767,6 +767,7 @@ Verify your Aadhaar details with bonafide govt sources in simple two step proces
 	* successUrl: we will redirect you to this url if your verification is successful.
 	* failureUrl: we will redirect you to this url if your verification gets failed.
 	* phoneNumber: phoneNumber
+	* personId : person Id (optional)
 
 .. note::
 	| After successful verification , Person can call this API to get the verification result.
