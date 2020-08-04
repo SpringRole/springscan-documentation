@@ -753,6 +753,7 @@ Verify your Aadhaar details with bonafide govt sources in simple two step proces
 		--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImluZm9Ac3ByaW5ndmVyaWZ5LmNvbSIsInVzZXJJZCI6IjVlMTczMjIxZjY4OTI4MDAxZGJhYzI1YiIsImlhdCI6MTU5MjU3NzQ1NiwiZXhwIjoxNjAxMjE3NDU2fQ.n8RgpaXeIiUSklg3savogqr_CjapKsOvC4o-phcvIQE' \
 		--data-urlencode 'successUrl= ' \
 		--data-urlencode 'failureUrl= ' \
+		--data-urlencode 'personId = ' \
 		--data-urlencode 'phoneNumber= '
 
 **Example Response**
