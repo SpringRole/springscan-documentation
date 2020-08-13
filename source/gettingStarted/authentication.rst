@@ -449,9 +449,11 @@ Initiates government verification on id number, name and date of birth or on gst
 			"personId": ":personId",
 			"doc_type": "ind_driving_license",
 			"date_of_birth": "1993-08-25",
-			"name_on_card": "HARISREE HO",
 			"id_number": "18/6173/2016"
 		}
+
+.. note::
+		date_of_birth field is optional here
 
 **Voter ID**
 
@@ -460,7 +462,6 @@ Initiates government verification on id number, name and date of birth or on gst
 		{ 
 			"personId": ":personId",
 			"doc_type": "ind_voter_id",  
-			"name_on_card": "HARISREE HO", 
 			"id_number": "GDN0225185" 
 		} 
 
@@ -496,6 +497,9 @@ Initiates government verification on id number, name and date of birth or on gst
 			"gstin": "29AAYCS8889G1ZZ",
 			"legal_name" : "SPRINGROLE INDIA PRIVATE LIMITED" 
 		}		
+
+.. note::
+		legal_name is optional here
 
 .. note::
    date format is yyyy-mm-dd
