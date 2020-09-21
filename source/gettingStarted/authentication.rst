@@ -467,15 +467,29 @@ Initiates government verification on id number, name and date of birth or on gst
 
 **PAN**
 
-.. code::
+        **Single PAN**
+
+		.. code::
 		
-		{ 
-			"personId": ":personId",
-			"doc_type": "ind_pan",  
-			"date_of_birth": "24-08-1991", 
-			"name_on_card": "Karan Ahuja",
-			"id_number": "BILPA4762R" 
-		} 
+				{ 
+					"personId": ":personId",
+					"doc_type": "ind_pan",  
+					"date_of_birth": "24-08-1991", 
+					"name_on_card": "Karan Ahuja",
+					"id_number": "BILPA4762R" 
+				} 
+		
+		**Multiple PAN**
+
+		.. code::
+
+				{
+					"doc_type": "ind_pan",
+					"id_number" : ["BILPA4762R", "DLQPB2291Q"]
+				}
+
+.. note::
+		personId , date_of_birth , name_on_card fields are optional in case of Single PAN Check.
 
 **AADHAAR**
 
@@ -544,8 +558,8 @@ API used to verify a bank account and ifsc code combination
 	
 	* name: Name of person
 	* phone: Phone number of person
-	* bankAccount : Account number
-	* ifsc: IFSC code of bank
+	* bankAccount : Account number (Test bank account Number to be run with this API : 026291800001191)
+	* ifsc: IFSC code of bank (Test IFSC Code to be run with this API : YESB0000262)
 	* Path Params: person_id(optional)
 	* Header: Client Token and Auth Token
 
@@ -582,7 +596,7 @@ API used to verify an existing UPI handle.
 **Parameters**
 	
 	* name : Name of the Person.
-	* vpa : VPA/UPI ID
+	* vpa : VPA/UPI ID (Test VPA to be run with this API : success@upi, failure@upi)
 	* Path Params: person_id(optional)
 	* Header: Client Token and Auth Token
 
