@@ -489,7 +489,8 @@ Initiates government verification on id number, name and date of birth or on gst
 				}
 
 .. note::
-		personId , date_of_birth , name_on_card fields are optional in case of Single PAN Check.
+	    | personId , date_of_birth , name_on_card fields are optional in case of Single PAN Check.
+		Maximum of 5 Id's can be verified at a time in case of Multiple Pan Check.
 
 **AADHAAR**
 
