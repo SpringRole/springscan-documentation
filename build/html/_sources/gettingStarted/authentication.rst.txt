@@ -199,44 +199,46 @@ Adds a new document to person or updates an existing document.
  	.. code::
 
 		{
-		"person": {
-		    "name": {
-		        "first": "MEGHA",
-		        "last": "BANSAL",
-		        "middle": "BANSAL"
-		    },
-		    "documents": {
-		        "ind_gst_certificate": {
-		            "result": {
-		                "address": "FIRST AND FOURTH FLOOR, NO 20, LAKSHMI PLAZA",
-		                "constitution_of_business": "Private Limited Company",
-		                "date_of_liability": "2017-07-24",
-		                "gstin": "29AAYCS8889G1BB",
-		                "is_provisional": false,
-		                "legal_name": "SPRINGROLE INDIA PRIVATE LIMITED",
-		                "pan_number": "AAYCS8889G",
-		                "trade_name": "",
-		                "type_of_registration": "Regular",
-		                "valid_upto": "2017-07-24"
-		            },
-			            "manualObj": null,
-			            "status": "completed",
-			            "faceMatched": false,
-			            "matchResult": null,
-			            "matchedInformation": null,
-			            "govResult": null,
-			            "request_id": "53e6719c-9f8f-4018-b7ad-fd4b24478be2",
-			            "created_by": "automatic",
-			            "_id": "5ea04e0dad178e7135373021",
-			            "docType": "ind_gst_certificate",
-			            "document1": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%gst.png",
-			            "belongsTo": "5df35fa819bd2a8d8663371c",
-			            "createdAt": "2020-04-22T14:00:57.289Z",
-			            "updatedAt": "2020-04-22T14:00:57.289Z",
-			            "__v": 0
-		        }
-		    }
-		}
+   		  "person": [
+      			{
+         			"name": {
+            			"first": "MEGHA",
+            			"last": "BANSAL",
+            			"middle": ""
+         			},
+         			"documents": {
+            			"ind_gst_certificate": {
+               				"result": {
+                  				"address": "SECOND FLOOR, NO 19, AMAR PLAZA, KRISHNANAGAR INDUSTRIAL LAYOUT, HOSUR ROAD, BANGALORE, Bengaluru",
+                  				"constitution_of_business": "Private Limited Company",
+                  				"date_of_liability": "2017-07-24",
+                  				"gstin": "29AAYCS8889G1ZZ",
+                  				"is_provisional": false,
+                  				"legal_name": "SPRINGROLE INDIA PRIVATE LIMITED",
+                  				"pan_number": "AAYCS8889G",
+                  				"trade_name": "",
+                  				"type_of_registration": "",
+                  				"valid_upto": "2017-07-24"
+               				},
+               				"manualObj": null,
+               				"status": "completed",
+               				"faceMatched": false,
+               				"matchResult": null,
+               				"matchedInformation": null,
+               				"govResult": null,
+               				"request_id": "17666153-c1ad-429d-b572-989561287d0a",
+               				"created_by": "automatic",
+               				"_id": "5f7569edc7f7cb001b69b32f",
+               				"docType": "ind_gst_certificate",
+               				"document1": "https://pdf-reports-springrole.s3.amazonaws.com/5f7569b4c7f7cb001b69b32c/GST%20Certificate.pdf",
+               				"belongsTo": "5df35fa819bd2a8d8663371c",
+               				"createdAt": "2020-10-01T05:32:29.919Z",
+               				"updatedAt": "2020-10-01T05:32:44.130Z",
+               				"__v": 0
+            				}
+         			}
+      			}
+   		  	]
 		}
 
 **Query Parameters**
