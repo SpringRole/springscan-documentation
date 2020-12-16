@@ -518,6 +518,21 @@ Initiates government verification on id number, name and date of birth or on gst
 .. note::
 		legal_name is optional here
 
+**RC Book**
+
+.. code::
+		
+		{
+			"personId": ":personId",
+			"doc_type": "ind_rc",
+			"rc_number": "DL7SCJ2748",
+			"chassis_number": "MD634DE67K2E03482", 
+			"name_of_owner": "Shobhit",
+		}		
+
+.. note::
+		chassis_number and name_of_owner are optional in this case
+
 .. note::
    date format is yyyy-mm-dd
    For response check :doc:`appendex` 1
