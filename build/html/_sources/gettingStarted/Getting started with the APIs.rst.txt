@@ -58,6 +58,8 @@ Environment Urls
 ----------------
 
 	**Development** : https://api-dev.springscan.springverify.com
+	
+	**Postman Collection** : https://www.getpostman.com/collections/c7cbcd634df2b590f0b6
 
 	**Credentials** : 
 			* email: test@springscan.com

@@ -147,7 +147,7 @@ This API is used to initialize a **Person** with us. The person is initialized w
 
 **Query Parameters**
 	
-  * docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate
+  * docType can be: ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate, ind_cheque
   * document1: Url of document
   * document2: (optional) back url of document
   * selfie: selfie of person
@@ -168,14 +168,6 @@ Adds a new document to person or updates an existing document.
 .. note::
 	 Please give the image url in this API.
 	 Use the token which was returned after add candidate API.
-
-**Currenly Supported Docs**
-	
-	* Salary Slip
-	* Experience Letter
-	* Relieving Letter
-	* Appointment Letter
-	* Others (not specific doc)
 
 **Path** : /user/person/:personId/document
 
@@ -245,11 +237,11 @@ Adds a new document to person or updates an existing document.
 	
   * document1: Url of document
   * document2 (optional): back url of document
-  * docType: Can beind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate
+  * docType: Can be ind_pan, ind_voter_id, ind_driving_license, ind_aadhaar, ind_passport, ind_gst_certificate, ind_cheque
 
- **Error Codes and Messages**
+**Error Codes and Messages**
 	
-	* 404: Person not found
+  * 404: Person not found
 
 Selfie Quality Detection
 ------------------------
