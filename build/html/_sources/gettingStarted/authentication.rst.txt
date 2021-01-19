@@ -27,14 +27,16 @@ Client needs to send JWT token in the header, along with client Token to success
 		  -d 'email=test%40springscan.com&password=springscan'
 
 **Example Response**
-	.. code::
+	.. code-block:: json
 
-		{
-	    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZTMwN2IwNGNkNWQ5YTAzMTgwYzMwYWMiLCJpYXQiOjE1ODM0MDQzMzMsImV4cCI6MTU5MjA0NDMzM30.V_yzdNB4w5H7FAW1oc_M7iy-_-RJXOTbD8RG4erdINU",
-	    "userId": "5e307b04cd5d9a03180c30ac",
-	    "user_name": "klsjdskl",
-	    "company_name": ""
-		}
+			{
+				"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAc3ByaW5nc2Nhbi5jb20iLCJ1c2VySWQiOiI1ZTMwN2IwNGNkNWQ5YTAzMTgwYzMwYWMiLCJpYXQiOjE1ODM0MDQzMzMsImV4cCI6MTU5MjA0NDMzM30.V_yzdNB4w5H7FAW1oc_M7iy-_-RJXOTbD8RG4erdINU",
+				"demo_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImluZm9Ac3ByaW5ndmVyaWZ5LmNvbSIsInVzZXJJZCI6IjVlMTczMzZjNzZjYzQzMDAxYzM3MDk5YyIsImlhdCI6MTYwNjEzODA1NCwiZXhwIjoxNjE0Nzc4MDU0fQ.sqtzAzDTj006WO470cVkwee-UWxrMOV-cnOQJMarEuM",
+				"demo_person_id": "5f20100c173c580014338f3c",
+				"userId": "5e17336c76cc43001c37099c",
+				"user_name": "Springverify India",
+				"company_name": "SpringRole_5"
+			}
 
 **Query Parameters**
 	
@@ -69,24 +71,24 @@ We aim to provide clients with option to host their documents with us. The menti
 		  -H 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
 		  -H 'cache-control: no-cache' \
 		  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
-		  -F person_id=5df35fa819bd2a8d8663371c \
+		  -F 'person_id=5df35fa819bd2a8d8663371c' \
 		  -F 'ind_aadhaar='https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2aadhar.png'
 
 **Example Response**
-	.. code::
+	.. code-block:: json
 
-		{
-		"ind_aadhaar": {
-		    "Location": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2aadhar.png",
-		    "Bucket": "pdf-reports-springrole",
-		    "originalName": "adhaar.png",
-		    "mimeType": "image/png"
-		},
-			"belongs_to": "5df35fa819bd2a8d8663371c",
-			"s3_paths": "5ea04cb5af006f001c24ef52",
-			"person_id": "5df35fa819bd2a8d8663371c",
-			"is_new_person": false
-		}
+			{
+				"ind_aadhaar": {
+				   "Location": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2aadhar.png",
+				   "Bucket": "pdf-reports-springrole",
+				   "originalName": "adhaar.png",
+				   "mimeType": "image/png"
+				},
+				"belongs_to": "5df35fa819bd2a8d8663371c",
+				"s3_paths": "5ea04cb5af006f001c24ef52",
+				"person_id": "5df35fa819bd2a8d8663371c",
+				"is_new_person": false
+			}
 
 **Query Parameters**
 
@@ -188,11 +190,11 @@ Adds a new document to person or updates an existing document.
 		    }'
 
 **Example Response**
- 	.. code::
+ 	.. code-block:: json
 
 		{
    		  "person": [
-      			{
+      			  {
          			"name": {
             			"first": "MEGHA",
             			"last": "BANSAL",
@@ -226,10 +228,10 @@ Adds a new document to person or updates an existing document.
                				"belongsTo": "5df35fa819bd2a8d8663371c",
                				"createdAt": "2020-10-01T05:32:29.919Z",
                				"updatedAt": "2020-10-01T05:32:44.130Z",
-               				"__v": 0
+               				"__v": 0							   
             				}
          			}
-      			}
+      			  }
    		  	]
 		}
 
@@ -265,33 +267,33 @@ Returns quality of selfie image
 		}'
 
 **Example Response**
- 	.. code::
+ 	.. code-block:: json 
 
 		{
-		"face_box": {
-		    "height": 100,
-		    "left": 194,
-		    "top": 66,
-		    "width": 66
-		},
-		"face_coverage": {
-		    "message": "too far from the camera",
-		    "percentage": 6,
-		    "status": "not_optimal"
-		},
-		"face_detected": true,
-		"face_quality": {
-		    "message": "optimal",
-		    "status": "optimal"
-		},
-		"is_live": true,
-		"multiple_faces_detected": false,
-		"person_id": "5ea03117af006f001c24ef50",
-		"is_updated_for_user": true,
-		"selfie": {
-		    "url": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme.jpg"
-		}
-		}
+   			"face_box":{
+      			   "height":100,
+      			   "left":194,
+      			   "top":66,
+      			   "width":66
+   			},
+   			"face_coverage":{
+      			   "message":"too far from the camera",
+      			   "percentage":6,
+      			   "status":"not_optimal"
+   			},
+   			"face_detected":true,
+   			"face_quality":{
+      			   "message":"optimal",
+      			   "status":"optimal"
+   			},
+   			"is_live":true,
+   			"multiple_faces_detected":false,
+   			"person_id":"5ea03117af006f001c24ef50",
+   			"is_updated_for_user":true,
+   			"selfie":{
+      			   "url":"https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme.jpg"
+			}
+		}	
 
 **Query Parameters**
 	* selfie_url: Hosting url or Base64 of selfie image
@@ -366,22 +368,22 @@ Does a compare of document and selfie, for a match. If User document image and u
 		  -d 'docType=ind_driving_license'
 
 **Example Response**
- 	.. code::
+ 	.. code-block:: json
 		
 		{
-		"matchResult": {
-		    "image_1": {
-		        "face_detected": true,
-		        "face_quality": "Good"
-		    },
-		    "image_2": {
-		        "face_detected": true,
-		        "face_quality": "Good"
-		    },
-		    "is_a_match": false,
-		    "match_score": 25.377161026000977,
-		    "review_recommended": false
-		}
+			"matchResult": {
+				"image_1": {
+					"face_detected": true,
+					"face_quality": "Good"
+				},
+				"image_2": {
+					"face_detected": true,
+					"face_quality": "Good"
+				},
+				"is_a_match": false,
+				"match_score": 25.377161026000977,
+				"review_recommended": false
+			}
 		}
 
 
@@ -525,10 +527,33 @@ Initiates government verification on id number, name and date of birth or on gst
 .. note::
 		chassis_number and name_of_owner are optional in this case
 
+**Council Of Architecture**
+
+.. code::
+		
+		{
+			"personId": ":personId",
+			"doc_type": "ind_coa",
+			"registration_number": "CA/1993/15611",
+		}
+
+**PASSPORT**
+
+.. code::
+		
+		{
+			"personId": ":personId",
+			"doc_type": "ind_passport",
+			"id_number": "M1516927",
+			"name_on_card": "Rishabh",
+			"date_of_birth": "1991-06-30",
+			"passport_file_no": "BN1062324990817",
+		}			
+
 .. note::
-   date format is yyyy-mm-dd
-   For response check :doc:`appendex` 1
-   as this does not go through complete ocr, matched information will be limited to data provided
+   | date format is yyyy-mm-dd
+   | For response check :doc:`appendex` 1
+   | as this does not go through complete ocr, matched information will be limited to data provided
 
 **Error Codes and Messages**
 	
@@ -710,41 +735,41 @@ Masks an Aadhaar image to hide first 12 digits of Aadhaar ID number
 			}'
 
 **Example Response**
- 	.. code::
+ 	.. code-block:: json
 
 		[
-		{
-		    "action": "mask",
-		    "completed_at": "2020-04-22T17:22:12+05:30",
-		    "created_at": "2020-04-22T17:22:08+05:30",
-		    "group_id": "b101b3d0-848f-11ea-b554-8b104684043b",
-		    "request_id": "f6dc6716-dc17-40ae-ad5f-13eff5ae6c1f",
-		    "result": {
-		        "document_url": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme1.jpg",
-		        "id_number_found": true,
-		        "original_document_url": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme.jpg",
-		        "self_link": ""
-		    },
-			    "status": "completed",
-			    "task_id": "b1018cc0-848f-11ea-b554-8b104684043b",
-			    "type": "ind_aadhaar"
-		},
-		{
-		    "action": "mask",
-		    "completed_at": "2020-04-22T17:22:12+05:30",
-		    "created_at": "2020-04-22T17:22:08+05:30",
-		    "group_id": "b101b3d2-848f-11ea-b554-8b104684043b",
-		    "request_id": "c592ac66-00e4-4bab-9e81-7958b0655f81",
-		    "result": {
-		        "document_url": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme4.jpg",
-		        "id_number_found": true,
-		        "original_document_url": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme2.jpg",
-		        "self_link": ""
-		    },
-			    "status": "completed",
-			    "task_id": "b101b3d1-848f-11ea-b554-8b104684043b",
-			    "type": "ind_aadhaar"
-		}
+			{
+				"action": "mask",
+				"completed_at": "2020-04-22T17:22:12+05:30",
+				"created_at": "2020-04-22T17:22:08+05:30",
+				"group_id": "b101b3d0-848f-11ea-b554-8b104684043b",
+				"request_id": "f6dc6716-dc17-40ae-ad5f-13eff5ae6c1f",
+				"result": {
+					"document_url": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme1.jpg",
+					"id_number_found": true,
+					"original_document_url": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme.jpg",
+					"self_link": ""
+				},
+				"status": "completed",
+				"task_id": "b1018cc0-848f-11ea-b554-8b104684043b",
+				"type": "ind_aadhaar"
+			},
+			{
+				"action": "mask",
+				"completed_at": "2020-04-22T17:22:12+05:30",
+				"created_at": "2020-04-22T17:22:08+05:30",
+				"group_id": "b101b3d2-848f-11ea-b554-8b104684043b",
+				"request_id": "c592ac66-00e4-4bab-9e81-7958b0655f81",
+				"result": {
+					"document_url": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme4.jpg",
+					"id_number_found": true,
+					"original_document_url": "https%3A%2F%2Fpdf-reports-springrole.s3.amazonaws.com%2Fme2.jpg",
+					"self_link": ""
+				},
+				"status": "completed",
+				"task_id": "b101b3d1-848f-11ea-b554-8b104684043b",
+				"type": "ind_aadhaar"
+			}
 		]
 
 **Query Parameters**
