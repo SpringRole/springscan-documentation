@@ -772,27 +772,28 @@ Bank Account Validation:
 .. code-block:: json
 	  
 			 {
-   				"got_gov_response": true,
+   				"got_db_response": true,
    				"result": "id_found",
    				"information": "{\"name\":\"JOHN DOE\",\"account_number\":\"026291800001191\",\"ifsc\":\"YESB0000262\",\"accountExists\":\"YES\"}",
    				"message": "Bank Account details verified successfully.",
    				"success": true,
-   				"ocr": {
-       				   "name": "John Doe",
-       				   "phone": "9393877270",
-       				   "bankAccount": "026291800001191",
-       				   "ifsc": "YESB0000262"
+   				"manual_input": {
+					"name": "John Doe",
+					"phone": "9393877270",
+					"bankAccount": "026291800001191",
+					"ifsc": "YESB0000262",
+					"amountDeposited": "1"	  
    				},
-   				"government_output": {
-       				    "name": "JOHN DOE",
-       				    "account_number": "026291800001191",
-       				    "ifsc": "YESB0000262",
-       				    "accountExists": "YES"
+   				"db_output": {
+					"name": "JOHN DOE",
+					"account_number": "026291800001191",
+					"ifsc": "YESB0000262",
+					"accountExists": "YES"
    				},
    				"matched_information": {
-       				    "name_match": 100,
-       				    "account_number_match": true,
-       				    "ifsc_match": true
+					"name_match": 100,
+					"account_number_match": true,
+					"ifsc_match": true
    				}
 			 }
 
@@ -810,16 +811,16 @@ UPI ID Validation:
 .. code-block:: json
 	  
 		  {
-   			"got_gov_response": true,
+   			"got_db_response": true,
    			"result": "id_found",
    			"information": "{\"name\":\"John Doe\",\"vpa\":\"success@upi\",\"accountExists\":\"YES\"}",
    			"message": "VPA verification successful",
    			"success": true,
-   			"ocr": {
+   			"manual_input": {
        			    "name": "John Doe",
        			    "vpa": "success@upi"
    			},
-   			"government_output": {
+   			"db_output": {
        			    "name": "John Doe",
        			    "vpa": "success@upi",
        			    "accountExists": "YES"

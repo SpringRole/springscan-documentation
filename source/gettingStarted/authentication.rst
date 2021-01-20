@@ -591,8 +591,8 @@ API used to verify a bank account and ifsc code combination
 
 **Parameters**
 	
-	* name: Name of person
-	* phone: Phone number of person
+	* name: Name of person (optional)
+	* phone: Phone number of person (optional)
 	* bankAccount : Account number (Test bank account Number to be run with this API : 026291800001191)
 	* ifsc: IFSC code of bank (Test IFSC Code to be run with this API : YESB0000262)
 	* Path Params: person_id(optional)
@@ -600,7 +600,7 @@ API used to verify a bank account and ifsc code combination
 
 **Error Codes and Messages**
 	
-	* 200: Bank account and IFSC combination are verified / Bank account or IFSC code or both are invalid.
+	* 200: Bank account and IFSC combination are verified.
 	* 422: Values are Unprocessable.
 
 UPI ID Validation
@@ -630,7 +630,7 @@ API used to verify an existing UPI handle.
 
 **Parameters**
 	
-	* name : Name of the Person.
+	* name : Name of the Person.(optional)
 	* vpa : VPA/UPI ID (Test VPA to be run with this API : success@upi, failure@upi)
 	* Path Params: person_id(optional)
 	* Header: Client Token and Auth Token
