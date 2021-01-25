@@ -840,6 +840,59 @@ UPI ID Validation:
 Appendex 2
 ----------
 
+Verify Aadhaar OTP
+******************
+
+**success response**
+
+.. code-block:: json
+
+			{
+				"got_gov_response": true,
+				"result": "id_found",
+				"success": true,
+				"manual_input": {
+					"id_number": "963005385006",
+					"phone": "9784728248"
+				},
+				"government_output": {
+					"full_name": "Piyush Bhojwani",
+					"aadhaar_number": "963005385006",
+					"dob": "1999-03-05",
+					"gender": "M",
+					"address": {
+						"country": "India",
+						"dist": "Jaipur",
+						"state": "Rajasthan",
+						"po": "Mansarovar",
+						"loc": "Mansarovar",
+						"vtc": "Jaipur",
+						"subdist": "Jaipur",
+						"street": "Vijay Path",
+						"house": "120/49",
+						"landmark": "Near Tarani Hospital"
+					},
+					"face_status": false,
+					"face_score": -1,
+					"zip": "302020",
+					"profile_image": "",
+					"has_image": true,
+					"raw_xml": "https://pdf-reports-springrole.s3.amazonaws.com/600af8b1d797da0011d88826/aadhaar/0.31409205741198387",
+					"zip_data": "https://pdf-reports-springrole.s3.amazonaws.com/600af8b1d797da0011d88826/aadhaar/0.98312397132001",
+					"care_of": "C/O: Anand Bhojwani",
+					"share_code": "7821",
+					"mobile_verified": true,
+					"reference_id": "500620210122214044807",
+					"aadhaar_pdf": null
+				},
+				"matched_information": {
+					"message": "OCR Data has been verified with government source",
+					"id_match": true
+				}
+			}
+
+**Get Person**
+
 **success response**
 
 .. code-block:: json
