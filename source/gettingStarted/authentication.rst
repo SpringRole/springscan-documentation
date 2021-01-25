@@ -789,45 +789,72 @@ Aadhaar Verification- Via OTP
 Verify your Aadhaar details with bonafide govt sources in simple two step process.
 
 
-* The First step is an API call which generates link redirecting user to springscan dashboard, where a user can enter Aadhaar ID to verify and phone number linked with it. 
-* The second step involves getting OTP at registered phone number and verifying it with vendor to complete the process.
+* The First step is an API call which sends OTP to the registered mobile number. 
+* The second step involves an API call which fetches the aadhaar report using OTP and reportID generated in first step.
 
-**Path** : /v2/user/person/aadhaarOTPCheck/
+**Step 1 (Send OTP)**
+
+* This API sends OTP to the registered Mobile Number and creates a new person if not mentioned in the request.
+
+**Path** : /aadhaar/sendOTP/:personId
 
 **Method** : POST
 
 **Example Request**
  	.. code::
 		
-		 curl --location --request POST 'https://api-dev.springscan.springverify.com/v2/user/person/aadhaarOTPCheck/' \
-		--header 'Content-Type: application/x-www-form-urlencoded' \
-		--header '4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
-		--header 'cache-control: no-cache' \
-		--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImluZm9Ac3ByaW5ndmVyaWZ5LmNvbSIsInVzZXJJZCI6IjVlMTczMjIxZjY4OTI4MDAxZGJhYzI1YiIsImlhdCI6MTU5MjU3NzQ1NiwiZXhwIjoxNjAxMjE3NDU2fQ.n8RgpaXeIiUSklg3savogqr_CjapKsOvC4o-phcvIQE' \
-		--data-urlencode 'successUrl= ' \
-		--data-urlencode 'failureUrl= ' \
-		--data-urlencode 'personId = ' \
-		--data-urlencode 'phoneNumber= '
+		  curl --location --request POST 'https://api-dev.springscan.springverify.com/aadhaar/sendOTP/' \
+		  --header 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
+		  --header 'Authorization: Bearer <Jwt token>' \
+		  --header 'Content-Type: application/x-www-form-urlencoded' \
+		  --data-urlencode 'aadhaar_number=' \
+		  --data-urlencode 'phone_number='	
 
 **Example Response**
  	.. code::
 
-	 	 {
-    			"url": "https://tinyurl.com/y6dmznn7"
-		 }			
+			{
+				"status": 200,
+				"statusMsg": "Success",
+				"msg": "otp has been sent successfully",
+				"data": {
+					"reportId": "600af7d87f1e771e4044cfb0"
+				},
+				"personId": "600af8b1d797da0011d88826"
+			}		
 
 **Parameters**
 	
-	* successUrl: we will redirect you to this url if your verification is successful.
-	* failureUrl: we will redirect you to this url if your verification gets failed.
-	* phoneNumber: phoneNumber
+	* aadhaar_number: aadhaar_number.
+	* phone_number: phone_number
 	* personId : person Id (optional)
 
-.. note::
-	| After successful verification , Person can call this API to get the verification result.
-	| :ref:`getperson`
+**Step 2 (Verify OTP)**
 
-.. _getperson:
+* This API fetches report for the aadhaar number mentioned in Step 1.
+
+**Path** : /aadhaar/verifyOTP/:personId/:otp
+
+**Method** : POST
+
+**Example Request**
+ 	.. code::
+		
+		  curl --location --request POST 'https://api-dev.springscan.springverify.com/aadhaar/verifyOTP/600af8b1d797da0011d88826/124351' \
+		  --header 'Token: 4cbe51cf-a294-35a8-b3ae-d3cc89abf29c' \
+		  --header 'Authorization: Bearer <Jwt token>' \
+		  --header 'Content-Type: application/x-www-form-urlencoded' \
+		  --data-urlencode 'reportId='
+
+**Parameters**
+	
+	* reportId: Report Id (generated from Step 1).
+	* otp: OTP (need to be passed in params)
+	* personId : person Id (need to be passed in params)
+
+.. note::
+	| All Parameters (reportId, OTP, PersonId) are mandatory.
+	| For Response Check :ref:`appendex2`	
 
 Get Person
 ----------
